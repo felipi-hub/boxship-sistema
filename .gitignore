@@ -1,0 +1,23 @@
+# Arquivos do sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+npm-debug.log*
+
+# Dados locais (não commitar dados sensíveis)
+auth_info_baileys/
+*.db
+*.sqlite
+
+# Backup
+backup/
+*.backup

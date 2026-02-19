@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BoxShip - Sistema de Montagem de Caixas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#25D366',
+                        secondary: '#128C7E',
+                        dark: '#075E54',
+                        light: '#DCF8C6',
+                        accent: '#6366f1'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #25D366;
+            border-radius: 10px;
+        }
+
+        .tab-btn.active {
+            color: #25D366;
+            border-bottom-color: #25D366;
+            background: rgba(37, 211, 102, 0.05);
+        }
+
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .weight-bar {
+            transition: width 0.5s ease;
+        }
+
+        .product-item {
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .pulse-green {
+            animation: pulseGreen 2s infinite;
+        }
+
+        @keyframes pulseGreen {
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4);
+            }
+
+            50% {
+                box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
+            }
+        }
+
+        .drag-over {
+            border: 2px dashed #25D366 !important;
+            background: rgba(37, 211, 102, 0.1) !important;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 min-h-screen">
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-dark to-secondary text-white shadow-lg">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <div class="bg-white/10 p-2 rounded-xl">
+                        <i class="fas fa-boxes-stacked text-3xl text-primary"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-bold">BoxShip</h1>
+                        <p class="text-sm text-gray-300">Montagem & Envio de Caixas</p>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="hidden md:flex items-center space-x-3 bg-white/10 rounded-full px-4 py-2">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-cube text-yellow-400"></i>
+                            <span class="text-sm"><span id="header-products">0</span> produtos</span>
+                        </div>
+                        <div class="w-px h-4 bg-white/30"></div>
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-box text-blue-400"></i>
+                            <span class="text-sm"><span id="header-boxes">0</span> caixas</span>
+                        </div>
+                    </div>
+                    <button onclick="openSettings()" class="p-2 hover:bg-white/10 rounded-full transition">
+                        <i class="fas fa-cog text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md sticky top-0 z-40">
+        <div class="container mx-auto px-4">
+            <div class="flex overflow-x-auto hide-scrollbar">
+                <button onclick="showTab('dashboard')"
+                    class="tab-btn active flex-shrink-0 px-6 py-4 font-medium text-gray-600 border-b-2 border-transparent transition flex items-center space-x-2"
+                    data-tab="dashboard">
+                    <i class="fas fa-chart-pie"></i>
+                    <span class="hidden sm:inline">Dashboard</span>
+                </button>
+                <button onclick="showTab('clients')"
+                    class="tab-btn flex-shrink-0 px-6 py-4 font-medium text-gray-600 border-b-2 border-transparent transition flex items-center space-x-2"
+                    data-tab="clients">
+                    <i class="fas fa-users"></i>
+                    <span class="hidden sm:inline">Clientes</span>
+                </button>
+                <button onclick="showTab('receive')"
+                    class="tab-btn flex-shrink-0 px-6 py-4 font-medium text-gray-600 border-b-2 border-transparent transition flex items-center space-x-2"
+                    data-tab="receive">
+                    <i class="fas fa-truck-loading"></i>
+                    <span class="hidden sm:inline">Receber Produtos</span>
+                </button>
+                <button onclick="showTab('products')"
+                    class="tab-btn flex-shrink-0 px-6 py-4 font-medium text-gray-600 border-b-2 border-transparent transition flex items-center space-x-2"
+                    data-tab="products">
+                    <i class="fas fa-cubes"></i>
+                    <span class="hidden sm:inline">Produtos</span>
+                </button>
+                <button onclick="showTab('boxes')"
+                    class="tab-btn flex-shrink-0 px-6 py-4 font-medium text-gray-600 border-b-2 border-transparent transition flex items-center space-x-2"
+                    data-tab="boxes">
+                    <i class="fas fa-box"></i>
+                    <span class="hidden sm:inline">Caixas</span>
+                </button>
+                <button onclick="showTab('assembly')"
+                    class="tab-btn flex-shrink-0 px-6 py-4 font-medium text-gray-600 border-b-2 border-transparent transition flex items-center space-x-2"
+                    data-tab="assembly">
+                    <i class="fas fa-tools"></i>
+                    <span class="hidden sm:inline">Montar Caixa</span>
+                </button>
+                <button onclick="showTab('shipments')"
+                    class="tab-btn flex-shrink-0 px-6 py-4 font-medium text-gray-600 border-b-2 border-transparent transition flex items-center space-x-2"
+                    data-tab="shipments">
+                    <i class="fas fa-shipping-fast"></i>
+                    <span class="hidden sm:inline">Envios</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-6">
+
+        <!-- ==================== DASHBOARD ==================== -->
+        <section id="tab-dashboard" class="tab-content">
+            <!-- Stats Cards -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                <div class="bg-white rounded-2xl shadow-lg p-5 card-hover border-l-4 border-yellow-500">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-gray-500 text-xs uppercase tracking-wide">Aguardando Montagem</p>
+                            <p id="stat-pending" class="text-3xl font-bold text-gray-800 mt-1">0</p>
+                        </div>
+                        <div class="bg-yellow-100 p-3 rounded-xl">
+                            <i class="fas fa-clock text-xl text-yellow-600"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-lg p-5 card-hover border-l-4 border-blue-500">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-gray-500 text-xs uppercase tracking-wide">Caixas em Montagem</p>
+                            <p id="stat-assembling" class="text-3xl font-bold text-gray-800 mt-1">0</p>
+                        </div>
+                        <div class="bg-blue-100 p-3 rounded-xl">
+                            <i class="fas fa-tools text-xl text-blue-600"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-lg p-5 card-hover border-l-4 border-primary">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-gray-500 text-xs uppercase tracking-wide">Prontas p/ Envio</p>
+                            <p id="stat-ready" class="text-3xl font-bold text-gray-800 mt-1">0</p>
+                        </div>
+                        <div class="bg-green-100 p-3 rounded-xl">
+                            <i class="fas fa-check-circle text-xl text-green-600"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-lg p-5 card-hover border-l-4 border-purple-500">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-gray-500 text-xs uppercase tracking-wide">Enviadas (Mês)</p>
+                            <p id="stat-shipped" class="text-3xl font-bold text-gray-800 mt-1">0</p>
+                        </div>
+                        <div class="bg-purple-100 p-3 rounded-xl">
+                            <i class="fas fa-shipping-fast text-xl text-purple-600"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions + Recent Activity -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+                <!-- Quick Actions -->
+                <div class="bg-white rounded-2xl shadow-lg p-6">
+                    <h3 class="text-lg font-bold text-gray-800 mb-4 flex items-center">
+                        <i class="fas fa-bolt text-yellow-500 mr-2"></i>
+                        Ações Rápidas
+                    </h3>
+                    <div class="space-y-3">
+                        <button onclick="showTab('receive')"
+                            class="w-full bg-gradient-to-r from-yellow-500 to-orange-500 text-white py-3 px-4 rounded-xl hover:shadow-lg transition flex items-center justify-center space-x-2">
+                            <i class="fas fa-plus-circle"></i>
+                            <span>Receber Produtos</span>
+                        </button>
+                        <button onclick="showTab('assembly')"
+                            class="w-full bg-gradient-to-r from-blue-500 to-indigo-500 text-white py-3 px-4 rounded-xl hover:shadow-lg transition flex items-center justify-center space-x-2">
+                            <i class="fas fa-box-open"></i>
+                            <span>Montar Nova Caixa</span>
+                        </button>
+                        <button onclick="showTab('boxes')"
+                            class="w-full bg-gradient-to-r from-primary to-secondary text-white py-3 px-4 rounded-xl hover:shadow-lg transition flex items-center justify-center space-x-2">
+                            <i class="fas fa-paper-plane"></i>
+                            <span>Caixas Prontas</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Clients with Pending Products -->
+                <div class="lg:col-span-2 bg-white rounded-2xl shadow-lg p-6">
+                    <h3 class="text-lg font-bold text-gray-800 mb-4 flex items-center justify-between">
+                        <span><i class="fas fa-users text-blue-500 mr-2"></i>Clientes com Produtos Pendentes</span>
+                        <span id="pending-clients-count"
+                            class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm">0</span>
+                    </h3>
+                    <div id="pending-clients-list" class="space-y-3 max-h-64 overflow-y-auto">
+                        <!-- Lista de clientes -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Boxes -->
+            <div class="bg-white rounded-2xl shadow-lg p-6">
+                <h3 class="text-lg font-bold text-gray-800 mb-4">
+                    <i class="fas fa-history text-purple-500 mr-2"></i>
+                    Últimas Caixas
+                </h3>
+                <div id="recent-boxes" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <!-- Caixas recentes -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== CLIENTES ==================== -->
+        <section id="tab-clients" class="tab-content hidden">
+            <div class="bg-white rounded-2xl shadow-lg p-6">
+                <div class="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-4">
+                    <h2 class="text-2xl font-bold text-gray-800">
+                        <i class="fas fa-users text-primary mr-2"></i>
+                        Clientes
+                    </h2>
+                    <div class="flex flex-col sm:flex-row gap-3">
+                        <div class="relative">
+                            <input type="text" id="search-client" placeholder="Buscar cliente..."
+                                class="w-full sm:w-64 border-2 border-gray-200 rounded-xl px-4 py-2 pl-10 focus:border-primary focus:outline-none transition"
+                                oninput="filterClients()">
+                            <i
+                                class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                        </div>
+                        <button onclick="openClientModal()"
+                            class="bg-primary text-white px-6 py-2 rounded-xl hover:bg-secondary transition flex items-center justify-center space-x-2">
+                            <i class="fas fa-plus"></i>
+                            <span>Novo Cliente</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="clients-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <!-- Cards de clientes -->
+                </div>
+
+                <div id="no-clients" class="hidden text-center py-12">
+                    <i class="fas fa-user-plus text-6xl text-gray-300 mb-4"></i>
+                    <p class="text-gray-500 text-lg">Nenhum cliente cadastrado</p>
+                    <button onclick="openClientModal()" class="mt-4 text-primary hover:underline">Cadastrar primeiro
+                        cliente</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== RECEBER PRODUTOS ==================== -->
+        <section id="tab-receive" class="tab-content hidden">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Formulário de Recebimento -->
+                <div class="bg-white rounded-2xl shadow-lg p-6">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                        <i class="fas fa-truck-loading text-yellow-500 mr-3"></i>
+                        Receber Produto
+                    </h2>
+                    <form id="form-receive" class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Cliente *</label>
+                            <select id="receive-client" required
+                                class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-primary focus:outline-none transition">
+                                <option value="">Selecione o cliente</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Descrição do Produto *</label>
+                            <input type="text" id="receive-description" required
+                                class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-primary focus:outline-none transition"
+                                placeholder="Ex: Celular iPhone 15 Pro">
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Peso (kg) *</label>
+                                <input type="number" id="receive-weight" required step="0.01" min="0.01"
+                                    class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-primary focus:outline-none transition"
+                                    placeholder="0.5">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Quantidade</label>
+                                <input type="number" id="receive-quantity" value="1" min="1"
+                                    class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-primary focus:outline-none transition">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Código de Rastreio (se
+                                houver)</label>
+                            <input type="text" id="receive-tracking"
+                                class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-primary focus:outline-none transition"
+                                placeholder="Ex: BR123456789XX">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Observações</label>
+                            <textarea id="receive-notes" rows="2"
+                                class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-primary focus:outline-none transition"
+                                placeholder="Observações sobre o produto..."></textarea>
+                        </div>
+
+                        <div class="flex items-center p-4 bg-blue-50 rounded-xl">
+                            <input type="checkbox" id="receive-notify" class="w-5 h-5 text-primary rounded">
+                            <label for="receive-notify" class="ml-3 text-sm text-gray-700">Notificar cliente sobre
+                                recebimento</label>
+                        </div>
+
+                        <button type="submit"
+                            class="w-full bg-gradient-to-r from-yellow-500 to-orange-500 text-white py-4 rounded-xl hover:shadow-lg transition flex items-center justify-center space-x-2 text-lg font-medium">
+                            <i class="fas fa-plus-circle"></i>
+                            <span>Registrar Recebimento</span>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Últimos Recebimentos -->
+                <div class="bg-white rounded-2xl shadow-lg p-6">
+                    <h3 class="text-lg font-bold text-gray-800 mb-4 flex items-center justify-between">
+                        <span><i class="fas fa-history text-gray-500 mr-2"></i>Últimos Recebimentos</span>
+                        <span id="today-received" class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">0
+                            hoje</span>
+                    </h3>
+                    <div id="recent-receives" class="space-y-3 max-h-96 overflow-y-auto">
+                        <!-- Lista de recebimentos -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== PRODUTOS ==================== -->
+        <section id="tab-products" class="tab-content hidden">
+            <div class="bg-white rounded-2xl shadow-lg p-6">
+                <div class="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-4">
+                    <h2 class="text-2xl font-bold text-gray-800">
+                        <i class="fas fa-cubes text-blue-500 mr-2"></i>
+                        Todos os Produtos
+                    </h2>
+                    <div class="flex flex-wrap gap-3">
+                        <select id="filter-product-status"
+                            class="border-2 border-gray-200 rounded-xl px-4 py-2 focus:border-primary focus:outline-none transition"
+                            onchange="loadProducts()">
+                            <option value="all">Todos os Status</option>
+                            <option value="pending">Aguardando Montagem</option>
+                            <option value="in_box">Em Caixa</option>
+                        </select>
+                        <select id="filter-product-client"
+                            class="border-2 border-gray-200 rounded-xl px-4 py-2 focus:border-primary focus:outline-none transition"
+                            onchange="loadProducts()">
+                            <option value="all">Todos os Clientes</option>
+                        </select>
+                        <div class="relative">
+                            <input type="text" id="search-product" placeholder="Buscar produto..."
+                                class="w-full sm:w-48 border-2 border-gray-200 rounded-xl px-4 py-2 pl-10 focus:border-primary focus:outline-none transition"
+                                oninput="loadProducts()">
+                            <i
+                                class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Produto</th>
+                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Cliente</th>
+                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Peso</th>
+                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Data</th>
+                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
+                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="products-table" class="divide-y divide-gray-200">
+                            <!-- Produtos -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <div id="no-products" class="hidden text-center py-12">
+                    <i class="fas fa-box-open text-6xl text-gray-300 mb-4"></i>
+                    <p class="text-gray-500 text-lg">Nenhum produto encontrado</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== CAIXAS ==================== -->
+        <section id="tab-boxes" class="tab-content hidden">
+            <div class="bg-white rounded-2xl shadow-lg p-6">
+                <div class="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-4">
+                    <h2 class="text-2xl font-bold text-gray-800">
+                        <i class="fas fa-box text-primary mr-2"></i>
+                        Caixas
+                    </h2>
+                    <div class="flex flex-wrap gap-3">
+                        <select id="filter-box-status"
+                            class="border-2 border-gray-200 rounded-xl px-4 py-2 focus:border-primary focus:outline-none transition"
+                            onchange="loadBoxes()">
+                            <option value="all">Todos os Status</option>
+                            <option value="assembling">Em Montagem</option>
+                            <option value="ready">Pronta p/ Envio</option>
+                            <option value="shipped">Enviada</option>
+                            <option value="delivered">Entregue</option>
+                        </select>
+                        <button onclick="showTab('assembly')"
+                            class="bg-primary text-white px-6 py-2 rounded-xl hover:bg-secondary transition flex items-center space-x-2">
+                            <i class="fas fa-plus"></i>
+                            <span>Nova Caixa</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="boxes-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <!-- Cards de caixas -->
+                </div>
+
+                <div id="no-boxes" class="hidden text-center py-12">
+                    <i class="fas fa-box-open text-6xl text-gray-300 mb-4"></i>
+                    <p class="text-gray-500 text-lg">Nenhuma caixa criada</p>
+                    <button onclick="showTab('assembly')" class="mt-4 text-primary hover:underline">Criar primeira
+                        caixa</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== MONTAGEM DE CAIXA ==================== -->
+        <section id="tab-assembly" class="tab-content hidden">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- Selecionar Cliente e Produtos -->
+                <div class="lg:col-span-2 space-y-6">
+                    <!-- Seleção de Cliente -->
+                    <div class="bg-white rounded-2xl shadow-lg p-6">
+                        <h3 class="text-lg font-bold text-gray-800 mb-4">
+                            <i class="fas fa-user text-blue-500 mr-2"></i>
+                            Selecionar Cliente
+                        </h3>
+                        <select id="assembly-client"
+                            class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-primary focus:outline-none transition text-lg"
+                            onchange="loadClientProductsForAssembly()">
+                            <option value="">Selecione um cliente</option>
+                        </select>
+                    </div>
+
+                    <!-- Produtos Disponíveis -->
+                    <div class="bg-white rounded-2xl shadow-lg p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-lg font-bold text-gray-800">
+                                <i class="fas fa-cubes text-yellow-500 mr-2"></i>
+                                Produtos Disponíveis
+                            </h3>
+                            <button onclick="selectAllProducts()" class="text-sm text-primary hover:underline">
+                                Selecionar todos
+                            </button>
+                        </div>
+                        <div id="available-products" class="space-y-2 max-h-96 overflow-y-auto">
+                            <p class="text-gray-500 text-center py-8">Selecione um cliente para ver os produtos</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Caixa em Montagem -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 sticky top-24">
+                    <h3 class="text-lg font-bold text-gray-800 mb-4">
+                        <i class="fas fa-box-open text-primary mr-2"></i>
+                        Caixa em Montagem
+                    </h3>
+
+                    <!-- Peso -->
+                    <div class="mb-4">
+                        <div class="flex justify-between text-sm mb-2">
+                            <span class="text-gray-600">Peso Total</span>
+                            <span id="box-weight" class="font-bold">0.00 kg</span>
+                        </div>
+                        <div class="h-4 bg-gray-200 rounded-full overflow-hidden">
+                            <div id="weight-bar"
+                                class="weight-bar h-full bg-gradient-to-r from-primary to-secondary rounded-full"
+                                style="width: 0%"></div>
+                        </div>
+                        <div class="flex justify-between text-xs mt-1 text-gray-500">
+                            <span>0 kg</span>
+                            <span id="max-weight-display">25 kg (máx)</span>
+                        </div>
+                    </div>
+
+                    <!-- Produtos na Caixa -->
+                    <div class="mb-4">
+                        <p class="text-sm text-gray-600 mb-2">Produtos na caixa: <span id="box-items-count"
+                                class="font-bold">0</span></p>
+                        <div id="box-products"
+                            class="space-y-2 max-h-48 overflow-y-auto border-2 border-dashed border-gray-200 rounded-xl p-3 min-h-24">
+                            <p class="text-gray-400 text-sm text-center py-4">Adicione produtos à caixa</p>
+                        </div>
+                    </div>
+
+                    <!-- Número da Caixa -->
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Número da Caixa</label>
+                        <div class="flex items-center space-x-2">
+                            <span class="bg-gray-100 px-3 py-2 rounded-lg text-gray-600 font-medium">CX-</span>
+                            <input type="text" id="box-number"
+                                class="flex-1 border-2 border-gray-200 rounded-xl px-4 py-2 focus:border-primary focus:outline-none transition"
+                                placeholder="001">
+                            <button onclick="generateBoxNumber()"
+                                class="p-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition"
+                                title="Gerar automático">
+                                <i class="fas fa-sync-alt text-gray-600"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Ações -->
+                    <div class="space-y-3">
+                        <button onclick="saveBoxAsDraft()"
+                            class="w-full border-2 border-gray-200 text-gray-700 py-3 rounded-xl hover:bg-gray-50 transition flex items-center justify-center space-x-2">
+                            <i class="fas fa-save"></i>
+                            <span>Salvar Rascunho</span>
+                        </button>
+                        <button onclick="closeAndNotify()" id="btn-close-box" disabled
+                            class="w-full bg-gradient-to-r from-primary to-secondary text-white py-3 rounded-xl hover:shadow-lg transition flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed">
+                            <i class="fab fa-whatsapp"></i>
+                            <span>Fechar Caixa e Notificar</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== ENVIOS ==================== -->
+        <section id="tab-shipments" class="tab-content hidden">
+            <div class="bg-white rounded-2xl shadow-lg p-6">
+                <div class="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-4">
+                    <h2 class="text-2xl font-bold text-gray-800">
+                        <i class="fas fa-shipping-fast text-purple-500 mr-2"></i>
+                        Gerenciar Envios
+                    </h2>
+                    <div class="flex gap-3">
+                        <select id="filter-shipment-status"
+                            class="border-2 border-gray-200 rounded-xl px-4 py-2 focus:border-primary focus:outline-none transition"
+                            onchange="loadShipments()">
+                            <option value="ready">Prontas p/ Envio</option>
+                            <option value="shipped">Enviadas</option>
+                            <option value="delivered">Entregues</option>
+                            <option value="all">Todas</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="shipments-list" class="space-y-4">
+                    <!-- Lista de envios -->
+                </div>
+
+                <div id="no-shipments" class="hidden text-center py-12">
+                    <i class="fas fa-truck text-6xl text-gray-300 mb-4"></i>
+                    <p class="text-gray-500 text-lg">Nenhum envio encontrado</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ==================== MODAIS ==================== -->
+
+    <!-- Modal: Cliente -->
+    <div id="modal-client" class="fixed inset-0 bg-black/50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md max-h-[90vh] overflow-y-auto">
+            <div class="flex items-center justify-between p-6 border-b sticky top-0 bg-white">
+                <h3 id="modal-client-title" class="text-xl font-bold text-gray-800">Novo Cliente</h3>
+                <button onclick="closeClientModal()" class="text-gray-400 hover:text-gray-600 transition">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            <form id="form-client" class="p-6 space-y-4">
+                <input type="hidden" id="client-id">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Nome Completo *</label>
+                    <input type="text" id="client-name" required
+                        class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-primary focus:outline-none transition"
+                        placeholder="João da Silva">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">WhatsApp *</label>
+                    <input type="tel" id="client-phone" required
+                        class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-primary focus:outline-none transition"
+                        placeholder="(11) 99999-9999" oninput="maskPhone(this)">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">E-mail</label>
+                    <input type="email" id="client-email"
+                        class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-primary focus:outline-none transition"
+                        placeholder="joao@email.com">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Endereço de Entrega</label>
+                    <textarea id="client-address" rows="2"
+                        class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-primary focus:outline-none transition"
+                        placeholder="Rua, número, bairro, cidade, estado, CEP"></textarea>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Observações</label>
+                    <textarea id="client-notes" rows="2"
+                        class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-primary focus:outline-none transition"
+                        placeholder="Observações..."></textarea>
+                </div>
+                <div class="flex space-x-4 pt-4">
+                    <button type="button" onclick="closeClientModal()"
+                        class="flex-1 border-2 border-gray-200 text-gray-600 py-3 rounded-xl hover:bg-gray-50 transition">Cancelar</button>
+                    <button type="submit"
+                        class="flex-1 bg-primary text-white py-3 rounded-xl hover:bg-secondary transition">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal: Detalhes da Caixa -->
+    <div id="modal-box-details" class="fixed inset-0 bg-black/50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto">
+            <div class="flex items-center justify-between p-6 border-b sticky top-0 bg-white">
+                <h3 id="modal-box-title" class="text-xl font-bold text-gray-800">Detalhes da Caixa</h3>
+                <button onclick="closeBoxDetailsModal()" class="text-gray-400 hover:text-gray-600 transition">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            <div id="modal-box-content" class="p-6">
+                <!-- Conteúdo dinâmico -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Registrar Envio -->
+    <div id="modal-shipment" class="fixed inset-0 bg-black/50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md">
+            <div class="flex items-center justify-between p-6 border-b">
+                <h3 class="text-xl font-bold text-gray-800">Registrar Envio</h3>
+                <button onclick="closeShipmentModal()" class="text-gray-400 hover:text-gray-600 transition">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            <form id="form-shipment" class="p-6 space-y-4">
+                <input type="hidden" id="shipment-box-id">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Código de Rastreio</label>
+                    <input type="text" id="shipment-tracking"
+                        class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-primary focus:outline-none transition"
+                        placeholder="Ex: BR123456789XX">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Transportadora</label>
+                    <select id="shipment-carrier"
+                        class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-primary focus:outline-none transition">
+                        <option value="correios">Correios</option>
+                        <option value="jadlog">Jadlog</option>
+                        <option value="fedex">FedEx</option>
+                        <option value="dhl">DHL</option>
+                        <option value="outro">Outro</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Observações</label>
+                    <textarea id="shipment-notes" rows="2"
+                        class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-primary focus:outline-none transition"></textarea>
+                </div>
+                <div class="flex items-center p-4 bg-green-50 rounded-xl">
+                    <input type="checkbox" id="shipment-notify" checked class="w-5 h-5 text-primary rounded">
+                    <label for="shipment-notify" class="ml-3 text-sm text-gray-700">Notificar cliente via
+                        WhatsApp</label>
+                </div>
+                <div class="flex space-x-4 pt-4">
+                    <button type="button" onclick="closeShipmentModal()"
+                        class="flex-1 border-2 border-gray-200 text-gray-600 py-3 rounded-xl hover:bg-gray-50 transition">Cancelar</button>
+                    <button type="submit"
+                        class="flex-1 bg-purple-600 text-white py-3 rounded-xl hover:bg-purple-700 transition flex items-center justify-center space-x-2">
+                        <i class="fas fa-shipping-fast"></i>
+                        <span>Confirmar Envio</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal: Configurações -->
+    <div id="modal-settings" class="fixed inset-0 bg-black/50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto">
+            <div class="flex items-center justify-between p-6 border-b sticky top-0 bg-white">
+                <h3 class="text-xl font-bold text-gray-800">⚙️ Configurações</h3>
+                <button onclick="closeSettings()" class="text-gray-400 hover:text-gray-600 transition">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            <div class="p-6 space-y-6">
+                <div>
+                    <h4 class="font-medium text-gray-800 mb-4"><i class="fas fa-building mr-2 text-primary"></i>Dados da
+                        Empresa</h4>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Nome da Empresa</label>
+                            <input type="text" id="setting-company"
+                                class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-primary focus:outline-none transition">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">WhatsApp da Empresa</label>
+                            <input type="text" id="setting-phone"
+                                class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-primary focus:outline-none transition">
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="font-medium text-gray-800 mb-4"><i
+                            class="fas fa-weight mr-2 text-blue-500"></i>Configuração de Caixas</h4>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Peso Máximo por Caixa (kg)</label>
+                        <input type="number" id="setting-max-weight" value="25" step="0.5"
+                            class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-primary focus:outline-none transition">
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="font-medium text-gray-800 mb-4"><i
+                            class="fas fa-database mr-2 text-purple-500"></i>Gerenciar Dados</h4>
+                    <div class="grid grid-cols-2 gap-4">
+                        <button onclick="exportAllData()"
+                            class="border-2 border-gray-200 text-gray-700 py-3 rounded-xl hover:bg-gray-50 transition flex items-center justify-center space-x-2">
+                            <i class="fas fa-download"></i>
+                            <span>Exportar</span>
+                        </button>
+                        <button onclick="document.getElementById('import-file').click()"
+                            class="border-2 border-gray-200 text-gray-700 py-3 rounded-xl hover:bg-gray-50 transition flex items-center justify-center space-x-2">
+                            <i class="fas fa-upload"></i>
+                            <span>Importar</span>
+                        </button>
+                        <input type="file" id="import-file" accept=".json" class="hidden" onchange="importData(event)">
+                    </div>
+                </div>
+
+                <button onclick="saveSettings()"
+                    class="w-full bg-primary text-white py-3 rounded-xl hover:bg-secondary transition">Salvar
+                    Configurações</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div id="toast"
+        class="fixed bottom-4 right-4 transform translate-y-full opacity-0 transition-all duration-300 z-50">
+        <div class="bg-gray-800 text-white px-6 py-4 rounded-xl shadow-lg flex items-center space-x-3">
+            <i id="toast-icon" class="fas fa-check-circle text-green-400"></i>
+            <span id="toast-message">Mensagem</span>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="css/js/database.js"></script>
+    <script src="css/js/whatsapp.js"></script>
+    <script src="css/js/utils.js"></script>
+    <script src="css/js/app.js"></script>
+</body>
+
+</html>

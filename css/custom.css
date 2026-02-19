@@ -1,0 +1,165 @@
+/* Custom CSS */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+* {
+    font-family: 'Inter', sans-serif;
+}
+
+/* Scrollbar personalizada */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #25D366;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #128C7E;
+}
+
+/* Tab ativa */
+.tab-btn.active {
+    color: #25D366;
+    border-bottom-color: #25D366;
+}
+
+/* Animações */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.tab-content {
+    animation: fadeIn 0.3s ease;
+}
+
+/* Card hover effect */
+.product-card {
+    transition: all 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Status badges */
+.status-available {
+    background-color: #DEF7EC;
+    color: #03543F;
+}
+
+.status-withdrawn {
+    background-color: #E1EFFE;
+    color: #1E429F;
+}
+
+.status-expired {
+    background-color: #FDE8E8;
+    color: #9B1C1C;
+}
+
+/* WhatsApp button animation */
+.whatsapp-btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.whatsapp-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(255, 255, 255, 0.2),
+            transparent);
+    transition: left 0.5s;
+}
+
+.whatsapp-btn:hover::before {
+    left: 100%;
+}
+
+/* Loading spinner */
+.spinner {
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #25D366;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Pulse animation for notifications */
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+    .tab-btn span {
+        display: none;
+    }
+
+    .tab-btn {
+        padding: 1rem;
+    }
+
+    .tab-btn i {
+        font-size: 1.25rem;
+    }
+}
+
+/* Print styles */
+@media print {
+
+    header,
+    nav,
+    .no-print {
+        display: none !important;
+    }
+
+    .tab-content {
+        display: block !important;
+    }
+}
