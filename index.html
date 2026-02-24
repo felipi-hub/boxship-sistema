@@ -9,6 +9,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
@@ -23,10 +24,10 @@
         }
     </script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
 
         * {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
         }
 
         ::-webkit-scrollbar {
@@ -44,10 +45,22 @@
             border-radius: 10px;
         }
 
+        html.dark ::-webkit-scrollbar-track {
+            background: #1e293b;
+        }
+
+        html.dark ::-webkit-scrollbar-thumb {
+            background: #475569;
+        }
+
         .tab-btn.active {
             color: #25D366;
             border-bottom-color: #25D366;
             background: rgba(37, 211, 102, 0.05);
+        }
+
+        html.dark .tab-btn.active {
+            background: rgba(37, 211, 102, 0.1);
         }
 
         .card-hover {
@@ -79,6 +92,22 @@
             }
         }
 
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .animate-fadeIn {
+            animation: fadeIn 0.2s ease-out;
+        }
+
         .hide-scrollbar::-webkit-scrollbar {
             display: none;
         }
@@ -86,6 +115,178 @@
         .hide-scrollbar {
             -ms-overflow-style: none;
             scrollbar-width: none;
+        }
+
+        /* ===== DARK MODE ===== */
+        html.dark body {
+            background-color: #0f172a;
+            color: #e2e8f0;
+        }
+
+        html.dark .bg-white {
+            background-color: #1e293b !important;
+        }
+
+        html.dark .bg-gray-50 {
+            background-color: #0f172a !important;
+        }
+
+        html.dark .bg-gray-100 {
+            background-color: #334155 !important;
+        }
+
+        html.dark .bg-gray-200 {
+            background-color: #475569 !important;
+        }
+
+        html.dark .text-gray-800,
+        html.dark .text-gray-900 {
+            color: #f1f5f9 !important;
+        }
+
+        html.dark .text-gray-700 {
+            color: #e2e8f0 !important;
+        }
+
+        html.dark .text-gray-600 {
+            color: #cbd5e1 !important;
+        }
+
+        html.dark .text-gray-500 {
+            color: #94a3b8 !important;
+        }
+
+        html.dark .text-gray-400 {
+            color: #64748b !important;
+        }
+
+        html.dark .text-gray-300 {
+            color: #475569 !important;
+        }
+
+        html.dark .border-gray-200 {
+            border-color: #334155 !important;
+        }
+
+        html.dark .border-gray-300 {
+            border-color: #475569 !important;
+        }
+
+        html.dark .divide-gray-200> :not(:last-child) {
+            border-color: #334155 !important;
+        }
+
+        html.dark .shadow-lg {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4) !important;
+        }
+
+        html.dark .shadow-md {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3) !important;
+        }
+
+        html.dark .shadow-sm {
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2) !important;
+        }
+
+        html.dark .shadow-2xl {
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5) !important;
+        }
+
+        html.dark input,
+        html.dark select,
+        html.dark textarea {
+            background-color: #0f172a !important;
+            color: #e2e8f0 !important;
+            border-color: #334155 !important;
+        }
+
+        html.dark input::placeholder,
+        html.dark textarea::placeholder {
+            color: #64748b !important;
+        }
+
+        html.dark .hover\:bg-gray-50:hover {
+            background-color: #1e293b !important;
+        }
+
+        html.dark .hover\:bg-gray-100:hover {
+            background-color: #334155 !important;
+        }
+
+        html.dark .hover\:bg-gray-200:hover {
+            background-color: #475569 !important;
+        }
+
+        html.dark .bg-yellow-100 {
+            background-color: rgba(234, 179, 8, 0.15) !important;
+        }
+
+        html.dark .bg-blue-100 {
+            background-color: rgba(59, 130, 246, 0.15) !important;
+        }
+
+        html.dark .bg-green-100 {
+            background-color: rgba(34, 197, 94, 0.15) !important;
+        }
+
+        html.dark .bg-purple-100 {
+            background-color: rgba(168, 85, 247, 0.15) !important;
+        }
+
+        html.dark .bg-red-100 {
+            background-color: rgba(239, 68, 68, 0.15) !important;
+        }
+
+        html.dark .bg-green-50 {
+            background-color: rgba(34, 197, 94, 0.1) !important;
+        }
+
+        html.dark .bg-blue-50 {
+            background-color: rgba(59, 130, 246, 0.1) !important;
+        }
+
+        html.dark .bg-yellow-50 {
+            background-color: rgba(234, 179, 8, 0.1) !important;
+        }
+
+        html.dark .bg-red-50 {
+            background-color: rgba(239, 68, 68, 0.1) !important;
+        }
+
+        html.dark .bg-purple-50 {
+            background-color: rgba(168, 85, 247, 0.1) !important;
+        }
+
+        html.dark .border-b {
+            border-color: #334155 !important;
+        }
+
+        html.dark table thead {
+            background-color: #1e293b !important;
+        }
+
+        html.dark table thead .bg-gray-50 {
+            background-color: #1e293b !important;
+        }
+
+        html.dark tr:hover {
+            background-color: rgba(255, 255, 255, 0.03) !important;
+        }
+
+        html.dark .border-dashed {
+            border-color: #475569 !important;
+        }
+
+        html.dark .card-hover:hover {
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        html.dark .border {
+            border-color: #334155 !important;
+        }
+
+        html.dark nav.shadow-md {
+            background-color: #1e293b !important;
         }
     </style>
 </head>
@@ -101,7 +302,7 @@
                     </div>
                     <div>
                         <h1 class="text-2xl font-bold">BoxShip</h1>
-                        <p class="text-sm text-gray-300">Montagem & Envio de Caixas</p>
+                        <p class="text-sm text-gray-300">Montagem &amp; Envio de Caixas</p>
                     </div>
                 </div>
                 <div class="flex items-center space-x-4">
@@ -130,46 +331,31 @@
             <div class="flex overflow-x-auto hide-scrollbar">
                 <button onclick="showTab('dashboard')"
                     class="tab-btn active flex-shrink-0 px-4 md:px-6 py-4 font-medium text-gray-600 border-b-2 border-transparent transition flex items-center space-x-2"
-                    data-tab="dashboard">
-                    <i class="fas fa-chart-pie"></i>
-                    <span class="hidden sm:inline">Dashboard</span>
-                </button>
+                    data-tab="dashboard"><i class="fas fa-chart-pie"></i><span
+                        class="hidden sm:inline">Dashboard</span></button>
                 <button onclick="showTab('clients')"
                     class="tab-btn flex-shrink-0 px-4 md:px-6 py-4 font-medium text-gray-600 border-b-2 border-transparent transition flex items-center space-x-2"
-                    data-tab="clients">
-                    <i class="fas fa-users"></i>
-                    <span class="hidden sm:inline">Clientes</span>
-                </button>
+                    data-tab="clients"><i class="fas fa-users"></i><span
+                        class="hidden sm:inline">Clientes</span></button>
                 <button onclick="showTab('receive')"
                     class="tab-btn flex-shrink-0 px-4 md:px-6 py-4 font-medium text-gray-600 border-b-2 border-transparent transition flex items-center space-x-2"
-                    data-tab="receive">
-                    <i class="fas fa-truck-loading"></i>
-                    <span class="hidden sm:inline">Receber</span>
-                </button>
+                    data-tab="receive"><i class="fas fa-truck-loading"></i><span
+                        class="hidden sm:inline">Receber</span></button>
                 <button onclick="showTab('products')"
                     class="tab-btn flex-shrink-0 px-4 md:px-6 py-4 font-medium text-gray-600 border-b-2 border-transparent transition flex items-center space-x-2"
-                    data-tab="products">
-                    <i class="fas fa-cubes"></i>
-                    <span class="hidden sm:inline">Produtos</span>
-                </button>
+                    data-tab="products"><i class="fas fa-cubes"></i><span
+                        class="hidden sm:inline">Produtos</span></button>
                 <button onclick="showTab('boxes')"
                     class="tab-btn flex-shrink-0 px-4 md:px-6 py-4 font-medium text-gray-600 border-b-2 border-transparent transition flex items-center space-x-2"
-                    data-tab="boxes">
-                    <i class="fas fa-box"></i>
-                    <span class="hidden sm:inline">Caixas</span>
-                </button>
+                    data-tab="boxes"><i class="fas fa-box"></i><span class="hidden sm:inline">Caixas</span></button>
                 <button onclick="showTab('assembly')"
                     class="tab-btn flex-shrink-0 px-4 md:px-6 py-4 font-medium text-gray-600 border-b-2 border-transparent transition flex items-center space-x-2"
-                    data-tab="assembly">
-                    <i class="fas fa-tools"></i>
-                    <span class="hidden sm:inline">Montar</span>
-                </button>
+                    data-tab="assembly"><i class="fas fa-tools"></i><span
+                        class="hidden sm:inline">Montar</span></button>
                 <button onclick="showTab('shipments')"
                     class="tab-btn flex-shrink-0 px-4 md:px-6 py-4 font-medium text-gray-600 border-b-2 border-transparent transition flex items-center space-x-2"
-                    data-tab="shipments">
-                    <i class="fas fa-shipping-fast"></i>
-                    <span class="hidden sm:inline">Envios</span>
-                </button>
+                    data-tab="shipments"><i class="fas fa-shipping-fast"></i><span
+                        class="hidden sm:inline">Envios</span></button>
             </div>
         </div>
     </nav>
@@ -186,8 +372,7 @@
                             <p class="text-gray-500 text-xs uppercase tracking-wide">Aguardando</p>
                             <p id="stat-pending" class="text-3xl font-bold text-gray-800 mt-1">0</p>
                         </div>
-                        <div class="bg-yellow-100 p-3 rounded-xl">
-                            <i class="fas fa-clock text-xl text-yellow-600"></i>
+                        <div class="bg-yellow-100 p-3 rounded-xl"><i class="fas fa-clock text-xl text-yellow-600"></i>
                         </div>
                     </div>
                 </div>
@@ -197,9 +382,7 @@
                             <p class="text-gray-500 text-xs uppercase tracking-wide">Em Montagem</p>
                             <p id="stat-assembling" class="text-3xl font-bold text-gray-800 mt-1">0</p>
                         </div>
-                        <div class="bg-blue-100 p-3 rounded-xl">
-                            <i class="fas fa-tools text-xl text-blue-600"></i>
-                        </div>
+                        <div class="bg-blue-100 p-3 rounded-xl"><i class="fas fa-tools text-xl text-blue-600"></i></div>
                     </div>
                 </div>
                 <div class="bg-white rounded-2xl shadow-lg p-5 card-hover border-l-4 border-primary">
@@ -208,9 +391,8 @@
                             <p class="text-gray-500 text-xs uppercase tracking-wide">Prontas</p>
                             <p id="stat-ready" class="text-3xl font-bold text-gray-800 mt-1">0</p>
                         </div>
-                        <div class="bg-green-100 p-3 rounded-xl">
-                            <i class="fas fa-check-circle text-xl text-green-600"></i>
-                        </div>
+                        <div class="bg-green-100 p-3 rounded-xl"><i
+                                class="fas fa-check-circle text-xl text-green-600"></i></div>
                     </div>
                 </div>
                 <div class="bg-white rounded-2xl shadow-lg p-5 card-hover border-l-4 border-purple-500">
@@ -219,38 +401,28 @@
                             <p class="text-gray-500 text-xs uppercase tracking-wide">Enviadas</p>
                             <p id="stat-shipped" class="text-3xl font-bold text-gray-800 mt-1">0</p>
                         </div>
-                        <div class="bg-purple-100 p-3 rounded-xl">
-                            <i class="fas fa-shipping-fast text-xl text-purple-600"></i>
-                        </div>
+                        <div class="bg-purple-100 p-3 rounded-xl"><i
+                                class="fas fa-shipping-fast text-xl text-purple-600"></i></div>
                     </div>
                 </div>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
                 <div class="bg-white rounded-2xl shadow-lg p-6">
-                    <h3 class="text-lg font-bold text-gray-800 mb-4 flex items-center">
-                        <i class="fas fa-bolt text-yellow-500 mr-2"></i>
-                        Ações Rápidas
-                    </h3>
+                    <h3 class="text-lg font-bold text-gray-800 mb-4 flex items-center"><i
+                            class="fas fa-bolt text-yellow-500 mr-2"></i>Ações Rápidas</h3>
                     <div class="space-y-3">
                         <button onclick="showTab('receive')"
-                            class="w-full bg-gradient-to-r from-yellow-500 to-orange-500 text-white py-3 px-4 rounded-xl hover:shadow-lg transition flex items-center justify-center space-x-2">
-                            <i class="fas fa-plus-circle"></i>
-                            <span>Receber Produtos</span>
-                        </button>
+                            class="w-full bg-gradient-to-r from-yellow-500 to-orange-500 text-white py-3 px-4 rounded-xl hover:shadow-lg transition flex items-center justify-center space-x-2"><i
+                                class="fas fa-plus-circle"></i><span>Receber Produtos</span></button>
                         <button onclick="showTab('assembly')"
-                            class="w-full bg-gradient-to-r from-blue-500 to-indigo-500 text-white py-3 px-4 rounded-xl hover:shadow-lg transition flex items-center justify-center space-x-2">
-                            <i class="fas fa-box-open"></i>
-                            <span>Montar Nova Caixa</span>
-                        </button>
+                            class="w-full bg-gradient-to-r from-blue-500 to-indigo-500 text-white py-3 px-4 rounded-xl hover:shadow-lg transition flex items-center justify-center space-x-2"><i
+                                class="fas fa-box-open"></i><span>Montar Nova Caixa</span></button>
                         <button onclick="showTab('boxes')"
-                            class="w-full bg-gradient-to-r from-primary to-secondary text-white py-3 px-4 rounded-xl hover:shadow-lg transition flex items-center justify-center space-x-2">
-                            <i class="fas fa-paper-plane"></i>
-                            <span>Caixas Prontas</span>
-                        </button>
+                            class="w-full bg-gradient-to-r from-primary to-secondary text-white py-3 px-4 rounded-xl hover:shadow-lg transition flex items-center justify-center space-x-2"><i
+                                class="fas fa-paper-plane"></i><span>Caixas Prontas</span></button>
                     </div>
                 </div>
-
                 <div class="lg:col-span-2 bg-white rounded-2xl shadow-lg p-6">
                     <h3 class="text-lg font-bold text-gray-800 mb-4 flex items-center justify-between">
                         <span><i class="fas fa-users text-blue-500 mr-2"></i>Clientes com Produtos Pendentes</span>
@@ -264,10 +436,8 @@
             </div>
 
             <div class="bg-white rounded-2xl shadow-lg p-6">
-                <h3 class="text-lg font-bold text-gray-800 mb-4">
-                    <i class="fas fa-history text-purple-500 mr-2"></i>
-                    Últimas Caixas
-                </h3>
+                <h3 class="text-lg font-bold text-gray-800 mb-4"><i
+                        class="fas fa-history text-purple-500 mr-2"></i>Últimas Caixas</h3>
                 <div id="recent-boxes" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                     <p class="text-gray-500 text-center py-8 col-span-3">Nenhuma caixa criada ainda</p>
                 </div>
@@ -278,29 +448,22 @@
         <section id="tab-clients" class="tab-content hidden">
             <div class="bg-white rounded-2xl shadow-lg p-6">
                 <div class="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-4">
-                    <h2 class="text-2xl font-bold text-gray-800">
-                        <i class="fas fa-users text-primary mr-2"></i>
-                        Clientes
+                    <h2 class="text-2xl font-bold text-gray-800"><i class="fas fa-users text-primary mr-2"></i>Clientes
                     </h2>
                     <div class="flex flex-col sm:flex-row gap-3">
                         <div class="relative">
                             <input type="text" id="search-client" placeholder="Buscar cliente..."
-                                class="w-full sm:w-64 border-2 border-gray-200 rounded-xl px-4 py-2 pl-10 focus:border-primary focus:outline-none transition"
+                                class="w-full sm:w-64 border-2 border-gray-200 rounded-xl px-4 py-2 pl-10 focus:border-primary focus:outline-none transition text-base"
                                 oninput="filterClients()">
                             <i
                                 class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
                         </div>
                         <button onclick="openClientModal()"
-                            class="bg-primary text-white px-6 py-2 rounded-xl hover:bg-secondary transition flex items-center justify-center space-x-2">
-                            <i class="fas fa-plus"></i>
-                            <span>Novo Cliente</span>
-                        </button>
+                            class="bg-primary text-white px-6 py-2 rounded-xl hover:bg-secondary transition flex items-center justify-center space-x-2"><i
+                                class="fas fa-plus"></i><span>Novo Cliente</span></button>
                     </div>
                 </div>
-
-                <div id="clients-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                </div>
-
+                <div id="clients-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
                 <div id="no-clients" class="hidden text-center py-12">
                     <i class="fas fa-user-plus text-6xl text-gray-300 mb-4"></i>
                     <p class="text-gray-500 text-lg">Nenhum cliente cadastrado</p>
@@ -314,47 +477,45 @@
         <section id="tab-receive" class="tab-content hidden">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <div class="bg-white rounded-2xl shadow-lg p-6">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
-                        <i class="fas fa-truck-loading text-yellow-500 mr-3"></i>
-                        Receber Produto
-                    </h2>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center"><i
+                            class="fas fa-truck-loading text-yellow-500 mr-3"></i>Receber Produto</h2>
                     <form id="form-receive" class="space-y-4">
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-2">Cliente *</label>
                             <select id="receive-client" required
-                                class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-primary focus:outline-none transition">
+                                class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-primary focus:outline-none transition text-base">
                                 <option value="">Selecione o cliente</option>
                             </select>
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-2">Descrição do Produto *</label>
                             <input type="text" id="receive-description" required
-                                class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-primary focus:outline-none transition"
+                                class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-primary focus:outline-none transition text-base"
                                 placeholder="Ex: Celular iPhone 15 Pro">
                         </div>
                         <div class="grid grid-cols-2 gap-4">
                             <div>
                                 <label class="block text-sm font-medium text-gray-700 mb-2">Peso (kg) *</label>
                                 <input type="number" id="receive-weight" required step="0.01" min="0.01"
-                                    class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-primary focus:outline-none transition"
+                                    class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-primary focus:outline-none transition text-base"
                                     placeholder="0.5">
                             </div>
                             <div>
                                 <label class="block text-sm font-medium text-gray-700 mb-2">Quantidade</label>
                                 <input type="number" id="receive-quantity" value="1" min="1"
-                                    class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-primary focus:outline-none transition">
+                                    class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-primary focus:outline-none transition text-base">
                             </div>
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-2">Código de Rastreio</label>
                             <input type="text" id="receive-tracking"
-                                class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-primary focus:outline-none transition"
+                                class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-primary focus:outline-none transition text-base"
                                 placeholder="Ex: BR123456789XX">
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-2">Observações</label>
                             <textarea id="receive-notes" rows="2"
-                                class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-primary focus:outline-none transition"
+                                class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-primary focus:outline-none transition text-base"
                                 placeholder="Observações..."></textarea>
                         </div>
                         <div class="flex items-center p-4 bg-blue-50 rounded-xl">
@@ -363,13 +524,10 @@
                                 recebimento</label>
                         </div>
                         <button type="submit"
-                            class="w-full bg-gradient-to-r from-yellow-500 to-orange-500 text-white py-4 rounded-xl hover:shadow-lg transition flex items-center justify-center space-x-2 text-lg font-medium">
-                            <i class="fas fa-plus-circle"></i>
-                            <span>Registrar Recebimento</span>
-                        </button>
+                            class="w-full bg-gradient-to-r from-yellow-500 to-orange-500 text-white py-4 rounded-xl hover:shadow-lg transition flex items-center justify-center space-x-2 text-lg font-medium"><i
+                                class="fas fa-plus-circle"></i><span>Registrar Recebimento</span></button>
                     </form>
                 </div>
-
                 <div class="bg-white rounded-2xl shadow-lg p-6">
                     <h3 class="text-lg font-bold text-gray-800 mb-4 flex items-center justify-between">
                         <span><i class="fas fa-history text-gray-500 mr-2"></i>Últimos Recebimentos</span>
@@ -387,26 +545,23 @@
         <section id="tab-products" class="tab-content hidden">
             <div class="bg-white rounded-2xl shadow-lg p-6">
                 <div class="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-4">
-                    <h2 class="text-2xl font-bold text-gray-800">
-                        <i class="fas fa-cubes text-blue-500 mr-2"></i>
-                        Todos os Produtos
-                    </h2>
+                    <h2 class="text-2xl font-bold text-gray-800"><i class="fas fa-cubes text-blue-500 mr-2"></i>Todos os
+                        Produtos</h2>
                     <div class="flex flex-wrap gap-3">
                         <select id="filter-product-status"
-                            class="border-2 border-gray-200 rounded-xl px-4 py-2 focus:border-primary focus:outline-none transition"
+                            class="border-2 border-gray-200 rounded-xl px-4 py-2 focus:border-primary focus:outline-none transition text-base"
                             onchange="loadProducts()">
                             <option value="all">Todos os Status</option>
                             <option value="pending">Aguardando</option>
                             <option value="in_box">Em Caixa</option>
                         </select>
                         <select id="filter-product-client"
-                            class="border-2 border-gray-200 rounded-xl px-4 py-2 focus:border-primary focus:outline-none transition"
+                            class="border-2 border-gray-200 rounded-xl px-4 py-2 focus:border-primary focus:outline-none transition text-base"
                             onchange="loadProducts()">
                             <option value="all">Todos os Clientes</option>
                         </select>
                     </div>
                 </div>
-
                 <div class="overflow-x-auto">
                     <table class="w-full">
                         <thead class="bg-gray-50">
@@ -419,11 +574,9 @@
                                 <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Ações</th>
                             </tr>
                         </thead>
-                        <tbody id="products-table" class="divide-y divide-gray-200">
-                        </tbody>
+                        <tbody id="products-table" class="divide-y divide-gray-200"></tbody>
                     </table>
                 </div>
-
                 <div id="no-products" class="hidden text-center py-12">
                     <i class="fas fa-box-open text-6xl text-gray-300 mb-4"></i>
                     <p class="text-gray-500 text-lg">Nenhum produto encontrado</p>
@@ -435,13 +588,10 @@
         <section id="tab-boxes" class="tab-content hidden">
             <div class="bg-white rounded-2xl shadow-lg p-6">
                 <div class="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-4">
-                    <h2 class="text-2xl font-bold text-gray-800">
-                        <i class="fas fa-box text-primary mr-2"></i>
-                        Caixas
-                    </h2>
+                    <h2 class="text-2xl font-bold text-gray-800"><i class="fas fa-box text-primary mr-2"></i>Caixas</h2>
                     <div class="flex flex-wrap gap-3">
                         <select id="filter-box-status"
-                            class="border-2 border-gray-200 rounded-xl px-4 py-2 focus:border-primary focus:outline-none transition"
+                            class="border-2 border-gray-200 rounded-xl px-4 py-2 focus:border-primary focus:outline-none transition text-base"
                             onchange="loadBoxes()">
                             <option value="all">Todos os Status</option>
                             <option value="assembling">Em Montagem</option>
@@ -450,16 +600,11 @@
                             <option value="delivered">Entregue</option>
                         </select>
                         <button onclick="showTab('assembly')"
-                            class="bg-primary text-white px-6 py-2 rounded-xl hover:bg-secondary transition flex items-center space-x-2">
-                            <i class="fas fa-plus"></i>
-                            <span>Nova Caixa</span>
-                        </button>
+                            class="bg-primary text-white px-6 py-2 rounded-xl hover:bg-secondary transition flex items-center space-x-2"><i
+                                class="fas fa-plus"></i><span>Nova Caixa</span></button>
                     </div>
                 </div>
-
-                <div id="boxes-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                </div>
-
+                <div id="boxes-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
                 <div id="no-boxes" class="hidden text-center py-12">
                     <i class="fas fa-box-open text-6xl text-gray-300 mb-4"></i>
                     <p class="text-gray-500 text-lg">Nenhuma caixa criada</p>
@@ -474,55 +619,40 @@
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 <div class="lg:col-span-2 space-y-6">
                     <div class="bg-white rounded-2xl shadow-lg p-6">
-                        <h3 class="text-lg font-bold text-gray-800 mb-4">
-                            <i class="fas fa-user text-blue-500 mr-2"></i>
-                            Selecionar Cliente
-                        </h3>
+                        <h3 class="text-lg font-bold text-gray-800 mb-4"><i
+                                class="fas fa-user text-blue-500 mr-2"></i>Selecionar Cliente</h3>
                         <select id="assembly-client"
                             class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-primary focus:outline-none transition text-lg"
                             onchange="loadClientProductsForAssembly()">
                             <option value="">Selecione um cliente</option>
                         </select>
                     </div>
-
                     <div class="bg-white rounded-2xl shadow-lg p-6">
                         <div class="flex items-center justify-between mb-4">
-                            <h3 class="text-lg font-bold text-gray-800">
-                                <i class="fas fa-cubes text-yellow-500 mr-2"></i>
-                                Produtos Disponíveis
-                            </h3>
-                            <button onclick="selectAllProducts()" class="text-sm text-primary hover:underline">
-                                Selecionar todos
-                            </button>
+                            <h3 class="text-lg font-bold text-gray-800"><i
+                                    class="fas fa-cubes text-yellow-500 mr-2"></i>Produtos Disponíveis</h3>
+                            <button onclick="selectAllProducts()"
+                                class="text-sm text-primary hover:underline">Selecionar todos</button>
                         </div>
                         <div id="available-products" class="space-y-2 max-h-96 overflow-y-auto">
                             <p class="text-gray-500 text-center py-8">Selecione um cliente para ver os produtos</p>
                         </div>
                     </div>
                 </div>
-
                 <div class="bg-white rounded-2xl shadow-lg p-6 lg:sticky lg:top-24">
-                    <h3 class="text-lg font-bold text-gray-800 mb-4">
-                        <i class="fas fa-box-open text-primary mr-2"></i>
-                        Caixa em Montagem
-                    </h3>
-
+                    <h3 class="text-lg font-bold text-gray-800 mb-4"><i
+                            class="fas fa-box-open text-primary mr-2"></i>Caixa em Montagem</h3>
                     <div class="mb-4">
-                        <div class="flex justify-between text-sm mb-2">
-                            <span class="text-gray-600">Peso Total</span>
-                            <span id="box-weight" class="font-bold">0.00 kg</span>
-                        </div>
+                        <div class="flex justify-between text-sm mb-2"><span class="text-gray-600">Peso
+                                Total</span><span id="box-weight" class="font-bold">0.00 kg</span></div>
                         <div class="h-4 bg-gray-200 rounded-full overflow-hidden">
                             <div id="weight-bar"
                                 class="weight-bar h-full bg-gradient-to-r from-primary to-secondary rounded-full"
                                 style="width: 0%"></div>
                         </div>
-                        <div class="flex justify-between text-xs mt-1 text-gray-500">
-                            <span>0 kg</span>
-                            <span id="max-weight-display">25 kg (máx)</span>
-                        </div>
+                        <div class="flex justify-between text-xs mt-1 text-gray-500"><span>0 kg</span><span
+                                id="max-weight-display">25 kg (máx)</span></div>
                     </div>
-
                     <div class="mb-4">
                         <p class="text-sm text-gray-600 mb-2">Produtos na caixa: <span id="box-items-count"
                                 class="font-bold">0</span></p>
@@ -531,33 +661,25 @@
                             <p class="text-gray-400 text-sm text-center py-4">Adicione produtos à caixa</p>
                         </div>
                     </div>
-
                     <div class="mb-4">
                         <label class="block text-sm font-medium text-gray-700 mb-2">Número da Caixa</label>
                         <div class="flex items-center space-x-2">
                             <span class="bg-gray-100 px-3 py-2 rounded-lg text-gray-600 font-medium">CX-</span>
                             <input type="text" id="box-number"
-                                class="flex-1 border-2 border-gray-200 rounded-xl px-4 py-2 focus:border-primary focus:outline-none transition"
+                                class="flex-1 border-2 border-gray-200 rounded-xl px-4 py-2 focus:border-primary focus:outline-none transition text-base"
                                 placeholder="0001">
                             <button onclick="generateBoxNumber()"
                                 class="p-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition"
-                                title="Gerar automático">
-                                <i class="fas fa-sync-alt text-gray-600"></i>
-                            </button>
+                                title="Gerar automático"><i class="fas fa-sync-alt text-gray-600"></i></button>
                         </div>
                     </div>
-
                     <div class="space-y-3">
                         <button onclick="saveBoxAsDraft()"
-                            class="w-full border-2 border-gray-200 text-gray-700 py-3 rounded-xl hover:bg-gray-50 transition flex items-center justify-center space-x-2">
-                            <i class="fas fa-save"></i>
-                            <span>Salvar Rascunho</span>
-                        </button>
+                            class="w-full border-2 border-gray-200 text-gray-700 py-3 rounded-xl hover:bg-gray-50 transition flex items-center justify-center space-x-2"><i
+                                class="fas fa-save"></i><span>Salvar Rascunho</span></button>
                         <button onclick="closeAndNotify()" id="btn-close-box" disabled
-                            class="w-full bg-gradient-to-r from-primary to-secondary text-white py-3 rounded-xl hover:shadow-lg transition flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed">
-                            <i class="fab fa-whatsapp"></i>
-                            <span>Fechar e Notificar</span>
-                        </button>
+                            class="w-full bg-gradient-to-r from-primary to-secondary text-white py-3 rounded-xl hover:shadow-lg transition flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed"><i
+                                class="fab fa-whatsapp"></i><span>Fechar e Notificar</span></button>
                     </div>
                 </div>
             </div>
@@ -567,12 +689,10 @@
         <section id="tab-shipments" class="tab-content hidden">
             <div class="bg-white rounded-2xl shadow-lg p-6">
                 <div class="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-4">
-                    <h2 class="text-2xl font-bold text-gray-800">
-                        <i class="fas fa-shipping-fast text-purple-500 mr-2"></i>
-                        Gerenciar Envios
-                    </h2>
+                    <h2 class="text-2xl font-bold text-gray-800"><i
+                            class="fas fa-shipping-fast text-purple-500 mr-2"></i>Gerenciar Envios</h2>
                     <select id="filter-shipment-status"
-                        class="border-2 border-gray-200 rounded-xl px-4 py-2 focus:border-primary focus:outline-none transition"
+                        class="border-2 border-gray-200 rounded-xl px-4 py-2 focus:border-primary focus:outline-none transition text-base"
                         onchange="loadShipments()">
                         <option value="ready">Prontas p/ Envio</option>
                         <option value="shipped">Enviadas</option>
@@ -580,10 +700,7 @@
                         <option value="all">Todas</option>
                     </select>
                 </div>
-
-                <div id="shipments-list" class="space-y-4">
-                </div>
-
+                <div id="shipments-list" class="space-y-4"></div>
                 <div id="no-shipments" class="hidden text-center py-12">
                     <i class="fas fa-truck text-6xl text-gray-300 mb-4"></i>
                     <p class="text-gray-500 text-lg">Nenhum envio encontrado</p>
@@ -598,47 +715,47 @@
         <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md max-h-[90vh] overflow-y-auto">
             <div class="flex items-center justify-between p-6 border-b sticky top-0 bg-white rounded-t-2xl">
                 <h3 id="modal-client-title" class="text-xl font-bold text-gray-800">Novo Cliente</h3>
-                <button onclick="closeClientModal()" class="text-gray-400 hover:text-gray-600 transition">
-                    <i class="fas fa-times text-xl"></i>
-                </button>
+                <button onclick="closeClientModal()" class="text-gray-400 hover:text-gray-600 transition"><i
+                        class="fas fa-times text-xl"></i></button>
             </div>
             <form id="form-client" class="p-6 space-y-4">
                 <input type="hidden" id="client-id">
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">Nome Completo *</label>
                     <input type="text" id="client-name" required
-                        class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-primary focus:outline-none transition">
+                        class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-primary focus:outline-none transition text-base">
                 </div>
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">País</label>
                     <select id="client-country"
-                        class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-primary focus:outline-none transition">
-                        <option value="BR">🇧🇷 Brasil (+55)</option>
-                        <option value="US">🇺🇸 EUA (+1)</option>
-                        <option value="PT">🇵🇹 Portugal (+351)</option>
-                        <option value="OTHER">🌍 Outro</option>
+                        class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-primary focus:outline-none transition text-base">
+                        <option value="BR">&#x1F1E7;&#x1F1F7; Brasil (+55)</option>
+                        <option value="US">&#x1F1FA;&#x1F1F8; EUA (+1)</option>
+                        <option value="PT">&#x1F1F5;&#x1F1F9; Portugal (+351)</option>
+                        <option value="GB">&#x1F1EC;&#x1F1E7; Reino Unido (+44)</option>
+                        <option value="OTHER">&#x1F30D; Outro</option>
                     </select>
                 </div>
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">WhatsApp *</label>
                     <input type="tel" id="client-phone" required
-                        class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-primary focus:outline-none transition"
+                        class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-primary focus:outline-none transition text-base"
                         placeholder="(11) 99999-9999">
                 </div>
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">E-mail</label>
                     <input type="email" id="client-email"
-                        class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-primary focus:outline-none transition">
+                        class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-primary focus:outline-none transition text-base">
                 </div>
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">Endereço</label>
                     <textarea id="client-address" rows="2"
-                        class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-primary focus:outline-none transition"></textarea>
+                        class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-primary focus:outline-none transition text-base"></textarea>
                 </div>
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">Observações</label>
                     <textarea id="client-notes" rows="2"
-                        class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-primary focus:outline-none transition"></textarea>
+                        class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-primary focus:outline-none transition text-base"></textarea>
                 </div>
                 <div class="flex space-x-4 pt-4">
                     <button type="button" onclick="closeClientModal()"
@@ -655,9 +772,8 @@
         <div class="bg-white rounded-2xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto">
             <div class="flex items-center justify-between p-6 border-b sticky top-0 bg-white rounded-t-2xl">
                 <h3 id="modal-box-title" class="text-xl font-bold text-gray-800">Detalhes</h3>
-                <button onclick="closeBoxDetailsModal()" class="text-gray-400 hover:text-gray-600 transition">
-                    <i class="fas fa-times text-xl"></i>
-                </button>
+                <button onclick="closeBoxDetailsModal()" class="text-gray-400 hover:text-gray-600 transition"><i
+                        class="fas fa-times text-xl"></i></button>
             </div>
             <div id="modal-box-content" class="p-6"></div>
         </div>
@@ -668,25 +784,25 @@
         <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md">
             <div class="flex items-center justify-between p-6 border-b">
                 <h3 class="text-xl font-bold text-gray-800">Registrar Envio</h3>
-                <button onclick="closeShipmentModal()" class="text-gray-400 hover:text-gray-600 transition">
-                    <i class="fas fa-times text-xl"></i>
-                </button>
+                <button onclick="closeShipmentModal()" class="text-gray-400 hover:text-gray-600 transition"><i
+                        class="fas fa-times text-xl"></i></button>
             </div>
             <form id="form-shipment" class="p-6 space-y-4">
                 <input type="hidden" id="shipment-box-id">
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">Código de Rastreio</label>
                     <input type="text" id="shipment-tracking"
-                        class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-primary focus:outline-none transition">
+                        class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-primary focus:outline-none transition text-base">
                 </div>
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">Transportadora</label>
                     <select id="shipment-carrier"
-                        class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-primary focus:outline-none transition">
+                        class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-primary focus:outline-none transition text-base">
                         <option value="correios">Correios</option>
                         <option value="jadlog">Jadlog</option>
                         <option value="fedex">FedEx</option>
                         <option value="dhl">DHL</option>
+                        <option value="royalmail">Royal Mail</option>
                         <option value="outro">Outro</option>
                     </select>
                 </div>
@@ -709,31 +825,28 @@
     <div id="modal-settings" class="fixed inset-0 bg-black/50 z-50 hidden flex items-center justify-center p-4">
         <div class="bg-white rounded-2xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto">
             <div class="flex items-center justify-between p-6 border-b sticky top-0 bg-white rounded-t-2xl">
-                <h3 class="text-xl font-bold text-gray-800">⚙️ Configurações</h3>
-                <button onclick="closeSettings()" class="text-gray-400 hover:text-gray-600 transition">
-                    <i class="fas fa-times text-xl"></i>
-                </button>
+                <h3 class="text-xl font-bold text-gray-800"><i class="fas fa-cog mr-2"></i>Configurações</h3>
+                <button onclick="closeSettings()" class="text-gray-400 hover:text-gray-600 transition"><i
+                        class="fas fa-times text-xl"></i></button>
             </div>
             <div class="p-6 space-y-6">
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">Nome da Empresa</label>
                     <input type="text" id="setting-company"
-                        class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-primary focus:outline-none transition">
+                        class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-primary focus:outline-none transition text-base">
                 </div>
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">Peso Máximo por Caixa (kg)</label>
                     <input type="number" id="setting-max-weight" value="25"
-                        class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-primary focus:outline-none transition">
+                        class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-primary focus:outline-none transition text-base">
                 </div>
                 <div class="grid grid-cols-2 gap-4">
                     <button onclick="exportAllData()"
-                        class="border-2 border-gray-200 text-gray-700 py-3 rounded-xl hover:bg-gray-50 transition">
-                        <i class="fas fa-download mr-2"></i>Exportar
-                    </button>
+                        class="border-2 border-gray-200 text-gray-700 py-3 rounded-xl hover:bg-gray-50 transition"><i
+                            class="fas fa-download mr-2"></i>Exportar</button>
                     <button onclick="document.getElementById('import-file').click()"
-                        class="border-2 border-gray-200 text-gray-700 py-3 rounded-xl hover:bg-gray-50 transition">
-                        <i class="fas fa-upload mr-2"></i>Importar
-                    </button>
+                        class="border-2 border-gray-200 text-gray-700 py-3 rounded-xl hover:bg-gray-50 transition"><i
+                            class="fas fa-upload mr-2"></i>Importar</button>
                     <input type="file" id="import-file" accept=".json" class="hidden" onchange="importData(event)">
                 </div>
                 <button onclick="saveSettings()"
@@ -751,113 +864,157 @@
         </div>
     </div>
 
-    <!-- ========== JAVASCRIPT COMPLETO ========== -->
+    <!-- ========== JAVASCRIPT ========== -->
     <script>
+            // ==================== DARK MODE ====================
+            (function initDarkMode() {
+                if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                    document.documentElement.classList.add('dark');
+                }
+                window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (event) {
+                    if (event.matches) {
+                        document.documentElement.classList.add('dark');
+                    } else {
+                        document.documentElement.classList.remove('dark');
+                    }
+                });
+            })();
+
+        // ==================== SETTINGS CACHE ====================
+        var appSettings = { companyName: 'Minha Empresa', maxWeight: 25 };
+
+        function getSettings() {
+            return appSettings;
+        }
+
         // ==================== DATABASE ====================
         class Database {
             constructor() {
                 this.dbName = 'BoxShipDB';
-                this.dbVersion = 1;
+                this.dbVersion = 2;
                 this.db = null;
             }
 
             async init() {
-                return new Promise((resolve, reject) => {
-                    const request = indexedDB.open(this.dbName, this.dbVersion);
-                    request.onerror = () => reject(request.error);
-                    request.onsuccess = () => { this.db = request.result; resolve(this.db); };
-                    request.onupgradeneeded = (event) => {
-                        const db = event.target.result;
-                        if (!db.objectStoreNames.contains('clients')) {
-                            const store = db.createObjectStore('clients', { keyPath: 'id', autoIncrement: true });
-                            store.createIndex('phone', 'phone', { unique: false });
+                return new Promise(function (resolve, reject) {
+                    var request = indexedDB.open('BoxShipDB', 2);
+                    request.onerror = function () { reject(request.error); };
+                    request.onsuccess = function () {
+                        db.db = request.result;
+                        resolve(db.db);
+                    };
+                    request.onupgradeneeded = function (event) {
+                        var idb = event.target.result;
+                        var oldVersion = event.oldVersion;
+
+                        if (oldVersion < 1) {
+                            var clientsStore = idb.createObjectStore('clients', { keyPath: 'id', autoIncrement: true });
+                            clientsStore.createIndex('phone', 'phone', { unique: false });
+
+                            var productsStore = idb.createObjectStore('products', { keyPath: 'id', autoIncrement: true });
+                            productsStore.createIndex('clientId', 'clientId', { unique: false });
+                            productsStore.createIndex('status', 'status', { unique: false });
+                            productsStore.createIndex('boxId', 'boxId', { unique: false });
+
+                            var boxesStore = idb.createObjectStore('boxes', { keyPath: 'id', autoIncrement: true });
+                            boxesStore.createIndex('clientId', 'clientId', { unique: false });
+                            boxesStore.createIndex('status', 'status', { unique: false });
                         }
-                        if (!db.objectStoreNames.contains('products')) {
-                            const store = db.createObjectStore('products', { keyPath: 'id', autoIncrement: true });
-                            store.createIndex('clientId', 'clientId', { unique: false });
-                            store.createIndex('status', 'status', { unique: false });
-                            store.createIndex('boxId', 'boxId', { unique: false });
-                        }
-                        if (!db.objectStoreNames.contains('boxes')) {
-                            const store = db.createObjectStore('boxes', { keyPath: 'id', autoIncrement: true });
-                            store.createIndex('clientId', 'clientId', { unique: false });
-                            store.createIndex('status', 'status', { unique: false });
+                        if (oldVersion < 2) {
+                            idb.createObjectStore('settings', { keyPath: 'key' });
                         }
                     };
                 });
             }
 
+            async loadAppSettings() {
+                try {
+                    var saved = await this.get('settings', 'main');
+                    if (saved && saved.value) {
+                        appSettings = Object.assign({}, appSettings, saved.value);
+                    }
+                } catch (e) {
+                    // use defaults
+                }
+                return appSettings;
+            }
+
+            async saveAppSettings(settings) {
+                appSettings = Object.assign({}, appSettings, settings);
+                try {
+                    await this.update('settings', { key: 'main', value: appSettings });
+                } catch (e) {
+                    // silently fail - settings remain in memory
+                }
+            }
+
             async add(storeName, data) {
-                return new Promise((resolve, reject) => {
-                    const tx = this.db.transaction([storeName], 'readwrite');
-                    const store = tx.objectStore(storeName);
+                var self = this;
+                return new Promise(function (resolve, reject) {
+                    var tx = self.db.transaction([storeName], 'readwrite');
+                    var store = tx.objectStore(storeName);
                     data.createdAt = new Date().toISOString();
-                    const request = store.add(data);
-                    request.onsuccess = () => resolve(request.result);
-                    request.onerror = () => reject(request.error);
+                    var request = store.add(data);
+                    request.onsuccess = function () { resolve(request.result); };
+                    request.onerror = function () { reject(request.error); };
                 });
             }
 
             async update(storeName, data) {
-                return new Promise((resolve, reject) => {
-                    const tx = this.db.transaction([storeName], 'readwrite');
-                    const store = tx.objectStore(storeName);
+                var self = this;
+                return new Promise(function (resolve, reject) {
+                    var tx = self.db.transaction([storeName], 'readwrite');
+                    var store = tx.objectStore(storeName);
                     data.updatedAt = new Date().toISOString();
-                    const request = store.put(data);
-                    request.onsuccess = () => resolve(request.result);
-                    request.onerror = () => reject(request.error);
+                    var request = store.put(data);
+                    request.onsuccess = function () { resolve(request.result); };
+                    request.onerror = function () { reject(request.error); };
                 });
             }
 
             async delete(storeName, id) {
-                return new Promise((resolve, reject) => {
-                    const tx = this.db.transaction([storeName], 'readwrite');
-                    const store = tx.objectStore(storeName);
-                    const request = store.delete(id);
-                    request.onsuccess = () => resolve();
-                    request.onerror = () => reject(request.error);
+                var self = this;
+                return new Promise(function (resolve, reject) {
+                    var tx = self.db.transaction([storeName], 'readwrite');
+                    var store = tx.objectStore(storeName);
+                    var request = store.delete(id);
+                    request.onsuccess = function () { resolve(); };
+                    request.onerror = function () { reject(request.error); };
                 });
             }
 
             async get(storeName, id) {
-                return new Promise((resolve, reject) => {
-                    const tx = this.db.transaction([storeName], 'readonly');
-                    const store = tx.objectStore(storeName);
-                    const request = store.get(id);
-                    request.onsuccess = () => resolve(request.result);
-                    request.onerror = () => reject(request.error);
+                var self = this;
+                return new Promise(function (resolve, reject) {
+                    var tx = self.db.transaction([storeName], 'readonly');
+                    var store = tx.objectStore(storeName);
+                    var request = store.get(id);
+                    request.onsuccess = function () { resolve(request.result); };
+                    request.onerror = function () { reject(request.error); };
                 });
             }
 
             async getAll(storeName) {
-                return new Promise((resolve, reject) => {
-                    const tx = this.db.transaction([storeName], 'readonly');
-                    const store = tx.objectStore(storeName);
-                    const request = store.getAll();
-                    request.onsuccess = () => resolve(request.result);
-                    request.onerror = () => reject(request.error);
+                var self = this;
+                return new Promise(function (resolve, reject) {
+                    var tx = self.db.transaction([storeName], 'readonly');
+                    var store = tx.objectStore(storeName);
+                    var request = store.getAll();
+                    request.onsuccess = function () { resolve(request.result); };
+                    request.onerror = function () { reject(request.error); };
                 });
             }
 
             async getByIndex(storeName, indexName, value) {
-                return new Promise((resolve, reject) => {
-                    const tx = this.db.transaction([storeName], 'readonly');
-                    const store = tx.objectStore(storeName);
-                    const index = store.index(indexName);
-                    const request = index.getAll(value);
-                    request.onsuccess = () => resolve(request.result);
-                    request.onerror = () => reject(request.error);
+                var self = this;
+                return new Promise(function (resolve, reject) {
+                    var tx = self.db.transaction([storeName], 'readonly');
+                    var store = tx.objectStore(storeName);
+                    var index = store.index(indexName);
+                    var request = index.getAll(value);
+                    request.onsuccess = function () { resolve(request.result); };
+                    request.onerror = function () { reject(request.error); };
                 });
-            }
-
-            getSettings() {
-                const defaults = { companyName: 'Minha Empresa', maxWeight: 25 };
-                const saved = localStorage.getItem('boxship_settings');
-                return saved ? { ...defaults, ...JSON.parse(saved) } : defaults;
-            }
-
-            saveSettings(settings) {
-                localStorage.setItem('boxship_settings', JSON.stringify(settings));
             }
 
             async exportAll() {
@@ -866,47 +1023,131 @@
                     clients: await this.getAll('clients'),
                     products: await this.getAll('products'),
                     boxes: await this.getAll('boxes'),
-                    settings: this.getSettings()
+                    settings: appSettings
                 };
             }
         }
 
-        const db = new Database();
+        var db = new Database();
+
+        // ==================== CUSTOM CONFIRM DIALOG ====================
+        function showConfirmDialog(message) {
+            return new Promise(function (resolve) {
+                var overlay = document.createElement('div');
+                overlay.className = 'fixed inset-0 bg-black/50 z-[60] flex items-center justify-center p-4';
+                var htmlMessage = message.replace(/\n/g, '<br>');
+                var isDark = document.documentElement.classList.contains('dark');
+                var bgClass = isDark ? 'background:#1e293b;color:#e2e8f0;' : 'background:#fff;color:#1f2937;';
+                var borderStyle = isDark ? 'border:2px solid #334155;' : 'border:2px solid #e5e7eb;';
+
+                overlay.innerHTML =
+                    '<div class="animate-fadeIn" style="' + bgClass + 'border-radius:1rem;box-shadow:0 25px 50px rgba(0,0,0,0.3);max-width:24rem;width:100%;padding:1.5rem;">' +
+                    '<div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem;">' +
+                    '<div style="background:rgba(234,179,8,0.15);padding:0.5rem;border-radius:50%;"><i class="fas fa-exclamation-triangle" style="color:#eab308;font-size:1.2rem;"></i></div>' +
+                    '<h3 style="font-weight:700;font-size:1.1rem;">Confirmação</h3>' +
+                    '</div>' +
+                    '<p style="margin-bottom:1.5rem;line-height:1.5;opacity:0.85;">' + htmlMessage + '</p>' +
+                    '<div style="display:flex;gap:0.75rem;">' +
+                    '<button data-action="cancel" style="flex:1;padding:0.75rem;border-radius:0.75rem;' + borderStyle + 'background:transparent;cursor:pointer;font-weight:500;">Cancelar</button>' +
+                    '<button data-action="confirm" style="flex:1;padding:0.75rem;border-radius:0.75rem;background:#ef4444;color:#fff;border:none;cursor:pointer;font-weight:500;">Confirmar</button>' +
+                    '</div>' +
+                    '</div>';
+
+                document.body.appendChild(overlay);
+
+                overlay.querySelector('[data-action="cancel"]').addEventListener('click', function () {
+                    overlay.remove();
+                    resolve(false);
+                });
+                overlay.querySelector('[data-action="confirm"]').addEventListener('click', function () {
+                    overlay.remove();
+                    resolve(true);
+                });
+                overlay.addEventListener('click', function (e) {
+                    if (e.target === overlay) {
+                        overlay.remove();
+                        resolve(false);
+                    }
+                });
+            });
+        }
 
         // ==================== WHATSAPP ====================
-        function formatPhone(phone) {
-            let cleaned = phone.replace(/\D/g, '');
-            if (cleaned.length === 11 || cleaned.length === 10) {
-                return '55' + cleaned;
+        var COUNTRY_PREFIXES = {
+            'BR': '55',
+            'US': '1',
+            'PT': '351',
+            'GB': '44'
+        };
+
+        function formatPhone(phone, country) {
+            var cleaned = phone.replace(/\D/g, '');
+            var prefix = COUNTRY_PREFIXES[country] || '';
+
+            if (!prefix) return cleaned;
+
+            // If already starts with country code, return as-is
+            if (cleaned.startsWith(prefix)) return cleaned;
+
+            // UK: remove leading 0 (e.g. 07xxx -> 7xxx then add 44)
+            if (country === 'GB' && cleaned.startsWith('0')) {
+                cleaned = cleaned.substring(1);
             }
-            return cleaned;
+
+            return prefix + cleaned;
         }
 
-        function isMobile() {
-            return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        function openWhatsApp(phone, message, country) {
+            var formattedPhone = formatPhone(phone, country || 'BR');
+            var encodedMessage = encodeURIComponent(message);
+            var url = 'https://wa.me/' + formattedPhone + '?text=' + encodedMessage;
+
+            // Try window.open first
+            var win = window.open(url, '_blank');
+
+            // If blocked by popup blocker, show fallback modal
+            if (!win || win.closed || typeof win.closed === 'undefined') {
+                showWhatsAppModal(url);
+            }
         }
 
-        function openWhatsApp(phone, message) {
-            const formattedPhone = formatPhone(phone);
-            const encodedMessage = encodeURIComponent(message);
-            const baseUrl = isMobile() ? 'https://api.whatsapp.com/send' : 'https://web.whatsapp.com/send';
-            const url = `${baseUrl}?phone=${formattedPhone}&text=${encodedMessage}`;
-            window.open(url, '_blank');
+        function showWhatsAppModal(url) {
+            var overlay = document.createElement('div');
+            overlay.className = 'fixed inset-0 bg-black/50 z-[60] flex items-center justify-center p-4';
+            var isDark = document.documentElement.classList.contains('dark');
+            var bgStyle = isDark ? 'background:#1e293b;color:#e2e8f0;' : 'background:#fff;color:#1f2937;';
+
+            overlay.innerHTML =
+                '<div class="animate-fadeIn" style="' + bgStyle + 'border-radius:1rem;box-shadow:0 25px 50px rgba(0,0,0,0.3);max-width:22rem;width:100%;padding:1.5rem;text-align:center;">' +
+                '<i class="fab fa-whatsapp" style="font-size:3rem;color:#25D366;margin-bottom:0.75rem;"></i>' +
+                '<p style="margin-bottom:1rem;opacity:0.8;">Clique no botão abaixo para abrir o WhatsApp</p>' +
+                '<a href="' + url + '" target="_blank" rel="noopener noreferrer" onclick="this.closest(\'.fixed\').remove()" style="display:block;background:#25D366;color:#fff;padding:0.875rem;border-radius:0.75rem;text-decoration:none;font-weight:600;margin-bottom:0.75rem;">' +
+                '<i class="fab fa-whatsapp" style="margin-right:0.5rem;"></i>Abrir WhatsApp' +
+                '</a>' +
+                '<button onclick="this.closest(\'.fixed\').remove()" style="width:100%;padding:0.625rem;border-radius:0.75rem;border:2px solid ' + (isDark ? '#334155' : '#e5e7eb') + ';background:transparent;cursor:pointer;color:inherit;">Fechar</button>' +
+                '</div>';
+
+            document.body.appendChild(overlay);
+
+            overlay.addEventListener('click', function (e) {
+                if (e.target === overlay) overlay.remove();
+            });
         }
 
         async function sendWhatsApp(clientId) {
-            const client = await db.get('clients', clientId);
-            const message = `Olá, ${client.name}! Como posso ajudar?`;
-            openWhatsApp(client.phone, message);
+            var client = await db.get('clients', clientId);
+            var message = 'Olá, ' + client.name + '! Como posso ajudar?';
+            openWhatsApp(client.phone, message, client.country);
         }
 
         // ==================== UTILS ====================
-        function showToast(message, type = 'success') {
-            const toast = document.getElementById('toast');
-            const icon = document.getElementById('toast-icon');
-            const text = document.getElementById('toast-message');
+        function showToast(message, type) {
+            type = type || 'success';
+            var toast = document.getElementById('toast');
+            var icon = document.getElementById('toast-icon');
+            var text = document.getElementById('toast-message');
             text.textContent = message;
-            const icons = {
+            var icons = {
                 'success': 'fa-check-circle text-green-400',
                 'error': 'fa-times-circle text-red-400',
                 'warning': 'fa-exclamation-circle text-yellow-400',
@@ -915,7 +1156,7 @@
             icon.className = 'fas ' + (icons[type] || icons['success']);
             toast.classList.remove('translate-y-full', 'opacity-0');
             toast.classList.add('translate-y-0', 'opacity-100');
-            setTimeout(() => {
+            setTimeout(function () {
                 toast.classList.add('translate-y-full', 'opacity-0');
                 toast.classList.remove('translate-y-0', 'opacity-100');
             }, 3000);
@@ -927,7 +1168,7 @@
         }
 
         function getBoxStatusBadge(status) {
-            const badges = {
+            var badges = {
                 'assembling': '<span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">Em Montagem</span>',
                 'ready': '<span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">Pronta</span>',
                 'shipped': '<span class="bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-xs">Enviada</span>',
@@ -937,7 +1178,7 @@
         }
 
         function getProductStatusBadge(status) {
-            const badges = {
+            var badges = {
                 'pending': '<span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs">Aguardando</span>',
                 'in_box': '<span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">Em Caixa</span>',
                 'shipped': '<span class="bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-xs">Enviado</span>'
@@ -946,51 +1187,59 @@
         }
 
         async function generateBoxNumber() {
-            const boxes = await db.getAll('boxes');
-            const lastNumber = boxes.reduce((max, box) => {
-                const num = parseInt((box.boxNumber || 'CX-0').replace('CX-', ''));
+            var boxes = await db.getAll('boxes');
+            var lastNumber = boxes.reduce(function (max, box) {
+                var num = parseInt((box.boxNumber || 'CX-0').replace('CX-', ''));
                 return num > max ? num : max;
             }, 0);
-            const newNumber = (lastNumber + 1).toString().padStart(4, '0');
+            var newNumber = (lastNumber + 1).toString().padStart(4, '0');
             document.getElementById('box-number').value = newNumber;
             return 'CX-' + newNumber;
         }
 
         async function exportAllData() {
-            const data = await db.exportAll();
-            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
+            var data = await db.exportAll();
+            var blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            var url = URL.createObjectURL(blob);
+            var a = document.createElement('a');
             a.href = url;
-            a.download = `boxship-backup-${new Date().toISOString().split('T')[0]}.json`;
+            a.download = 'boxship-backup-' + new Date().toISOString().split('T')[0] + '.json';
             a.click();
+            URL.revokeObjectURL(url);
             showToast('Backup criado!');
         }
 
         async function importData(event) {
-            const file = event.target.files[0];
+            var file = event.target.files[0];
             if (!file) return;
             try {
-                const text = await file.text();
-                const data = JSON.parse(text);
-                if (!confirm('Substituir todos os dados?')) return;
+                var text = await file.text();
+                var data = JSON.parse(text);
 
-                // Limpar e importar
-                for (const client of (data.clients || [])) {
-                    delete client.id;
-                    await db.add('clients', client);
+                var confirmed = await showConfirmDialog('Substituir todos os dados?\n\nEsta ação não pode ser desfeita.');
+                if (!confirmed) {
+                    event.target.value = '';
+                    return;
                 }
-                for (const product of (data.products || [])) {
-                    delete product.id;
-                    await db.add('products', product);
+
+                for (var i = 0; i < (data.clients || []).length; i++) {
+                    var c = Object.assign({}, data.clients[i]);
+                    delete c.id;
+                    await db.add('clients', c);
                 }
-                for (const box of (data.boxes || [])) {
-                    delete box.id;
-                    await db.add('boxes', box);
+                for (var j = 0; j < (data.products || []).length; j++) {
+                    var p = Object.assign({}, data.products[j]);
+                    delete p.id;
+                    await db.add('products', p);
+                }
+                for (var k = 0; k < (data.boxes || []).length; k++) {
+                    var b = Object.assign({}, data.boxes[k]);
+                    delete b.id;
+                    await db.add('boxes', b);
                 }
 
                 showToast('Dados importados! Recarregando...');
-                setTimeout(() => location.reload(), 1500);
+                setTimeout(function () { location.reload(); }, 1500);
             } catch (error) {
                 showToast('Erro ao importar: ' + error.message, 'error');
             }
@@ -999,16 +1248,17 @@
 
         // ==================== NAVEGAÇÃO ====================
         function showTab(tabName) {
-            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.add('hidden'));
-            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(function (tab) { tab.classList.add('hidden'); });
+            document.querySelectorAll('.tab-btn').forEach(function (btn) { btn.classList.remove('active'); });
             document.getElementById('tab-' + tabName).classList.remove('hidden');
-            document.querySelector(`[data-tab="${tabName}"]`).classList.add('active');
+            var activeBtn = document.querySelector('[data-tab="' + tabName + '"]');
+            if (activeBtn) activeBtn.classList.add('active');
 
             switch (tabName) {
                 case 'dashboard': updateStats(); loadPendingClientsList(); loadRecentBoxes(); break;
                 case 'clients': loadClients(); break;
                 case 'receive': loadClientSelects(); loadRecentReceives(); break;
-                case 'products': loadProducts(); break;
+                case 'products': loadProducts(); loadClientSelects(); break;
                 case 'boxes': loadBoxes(); break;
                 case 'assembly': loadClientSelects(); resetAssembly(); break;
                 case 'shipments': loadShipments(); break;
@@ -1017,27 +1267,27 @@
 
         // ==================== ESTATÍSTICAS ====================
         async function updateStats() {
-            const products = await db.getAll('products');
-            const boxes = await db.getAll('boxes');
+            var products = await db.getAll('products');
+            var boxes = await db.getAll('boxes');
 
-            document.getElementById('stat-pending').textContent = products.filter(p => p.status === 'pending').length;
-            document.getElementById('stat-assembling').textContent = boxes.filter(b => b.status === 'assembling').length;
-            document.getElementById('stat-ready').textContent = boxes.filter(b => b.status === 'ready').length;
-            document.getElementById('stat-shipped').textContent = boxes.filter(b => b.status === 'shipped' || b.status === 'delivered').length;
+            document.getElementById('stat-pending').textContent = products.filter(function (p) { return p.status === 'pending'; }).length;
+            document.getElementById('stat-assembling').textContent = boxes.filter(function (b) { return b.status === 'assembling'; }).length;
+            document.getElementById('stat-ready').textContent = boxes.filter(function (b) { return b.status === 'ready'; }).length;
+            document.getElementById('stat-shipped').textContent = boxes.filter(function (b) { return b.status === 'shipped' || b.status === 'delivered'; }).length;
 
-            document.getElementById('header-products').textContent = products.filter(p => p.status === 'pending').length;
-            document.getElementById('header-boxes').textContent = boxes.filter(b => b.status === 'assembling' || b.status === 'ready').length;
+            document.getElementById('header-products').textContent = products.filter(function (p) { return p.status === 'pending'; }).length;
+            document.getElementById('header-boxes').textContent = boxes.filter(function (b) { return b.status === 'assembling' || b.status === 'ready'; }).length;
         }
 
         // ==================== CLIENTES ====================
-        function openClientModal(clientId = null) {
+        function openClientModal(clientId) {
             document.getElementById('modal-client').classList.remove('hidden');
             document.getElementById('form-client').reset();
             document.getElementById('modal-client-title').textContent = clientId ? 'Editar Cliente' : 'Novo Cliente';
             document.getElementById('client-id').value = clientId || '';
 
             if (clientId) {
-                db.get('clients', clientId).then(client => {
+                db.get('clients', clientId).then(function (client) {
                     if (client) {
                         document.getElementById('client-name').value = client.name || '';
                         document.getElementById('client-phone').value = client.phone || '';
@@ -1056,8 +1306,8 @@
 
         document.getElementById('form-client').addEventListener('submit', async function (e) {
             e.preventDefault();
-            const clientId = document.getElementById('client-id').value;
-            const clientData = {
+            var clientId = document.getElementById('client-id').value;
+            var clientData = {
                 name: document.getElementById('client-name').value.trim(),
                 phone: document.getElementById('client-phone').value.trim(),
                 email: document.getElementById('client-email').value.trim(),
@@ -1085,12 +1335,12 @@
         });
 
         async function loadClients() {
-            const clients = await db.getAll('clients');
-            const products = await db.getAll('products');
-            const boxes = await db.getAll('boxes');
+            var clients = await db.getAll('clients');
+            var products = await db.getAll('products');
+            var boxes = await db.getAll('boxes');
 
-            const grid = document.getElementById('clients-grid');
-            const noClients = document.getElementById('no-clients');
+            var grid = document.getElementById('clients-grid');
+            var noClients = document.getElementById('no-clients');
 
             if (clients.length === 0) {
                 grid.innerHTML = '';
@@ -1100,124 +1350,109 @@
 
             noClients.classList.add('hidden');
 
-            grid.innerHTML = clients.map(client => {
-                const clientProducts = products.filter(p => p.clientId === client.id && p.status === 'pending');
-                const clientBoxes = boxes.filter(b => b.clientId === client.id);
+            var countryFlags = { 'BR': '\uD83C\uDDE7\uD83C\uDDF7', 'US': '\uD83C\uDDFA\uD83C\uDDF8', 'PT': '\uD83C\uDDF5\uD83C\uDDF9', 'GB': '\uD83C\uDDEC\uD83C\uDDE7', 'OTHER': '\uD83C\uDF0D' };
 
-                return `
-                <div class="bg-white rounded-xl p-5 card-hover border border-gray-200 shadow-sm">
-                    <div class="flex items-start justify-between mb-3">
-                        <div class="flex items-center space-x-3">
-                            <div class="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center">
-                                <span class="text-white font-bold text-lg">${client.name.charAt(0).toUpperCase()}</span>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-gray-800">${client.name}</h3>
-                                <p class="text-sm text-gray-500">${client.phone}</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="flex items-center space-x-4 mb-4 text-sm">
-                        <span class="text-yellow-600"><i class="fas fa-cube mr-1"></i>${clientProducts.length}</span>
-                        <span class="text-blue-600"><i class="fas fa-box mr-1"></i>${clientBoxes.length}</span>
-                    </div>
-                    
-                    <div class="grid grid-cols-2 gap-2">
-                        <button onclick="openClientModal(${client.id})" class="bg-blue-50 text-blue-700 py-2 rounded-lg hover:bg-blue-100 transition text-sm">
-                            <i class="fas fa-edit mr-1"></i>Editar
-                        </button>
-                        <button onclick="sendWhatsApp(${client.id})" class="bg-green-50 text-green-700 py-2 rounded-lg hover:bg-green-100 transition text-sm">
-                            <i class="fab fa-whatsapp mr-1"></i>WhatsApp
-                        </button>
-                        ${clientProducts.length > 0 ? `
-                            <button onclick="startAssemblyForClient(${client.id})" class="bg-primary text-white py-2 rounded-lg hover:bg-secondary transition text-sm col-span-2">
-                                <i class="fas fa-box mr-1"></i>Montar Caixa
-                            </button>
-                        ` : ''}
-                        <button onclick="deleteClient(${client.id})" class="bg-red-50 text-red-700 py-2 rounded-lg hover:bg-red-100 transition text-sm ${clientProducts.length > 0 ? '' : 'col-span-2'}">
-                            <i class="fas fa-trash mr-1"></i>Excluir
-                        </button>
-                    </div>
-                </div>
-            `;
+            grid.innerHTML = clients.map(function (client) {
+                var clientProducts = products.filter(function (p) { return p.clientId === client.id && p.status === 'pending'; });
+                var clientBoxes = boxes.filter(function (b) { return b.clientId === client.id; });
+                var flag = countryFlags[client.country] || countryFlags['OTHER'];
+
+                return '<div class="bg-white rounded-xl p-5 card-hover border border-gray-200 shadow-sm">' +
+                    '<div class="flex items-start justify-between mb-3">' +
+                    '<div class="flex items-center space-x-3">' +
+                    '<div class="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center">' +
+                    '<span class="text-white font-bold text-lg">' + client.name.charAt(0).toUpperCase() + '</span>' +
+                    '</div>' +
+                    '<div>' +
+                    '<h3 class="font-bold text-gray-800">' + client.name + '</h3>' +
+                    '<p class="text-sm text-gray-500">' + flag + ' ' + client.phone + '</p>' +
+                    '</div>' +
+                    '</div>' +
+                    '</div>' +
+                    '<div class="flex items-center space-x-4 mb-4 text-sm">' +
+                    '<span class="text-yellow-600"><i class="fas fa-cube mr-1"></i>' + clientProducts.length + '</span>' +
+                    '<span class="text-blue-600"><i class="fas fa-box mr-1"></i>' + clientBoxes.length + '</span>' +
+                    '</div>' +
+                    '<div class="grid grid-cols-2 gap-2">' +
+                    '<button onclick="openClientModal(' + client.id + ')" class="bg-blue-50 text-blue-700 py-2 rounded-lg hover:bg-blue-100 transition text-sm"><i class="fas fa-edit mr-1"></i>Editar</button>' +
+                    '<button onclick="sendWhatsApp(' + client.id + ')" class="bg-green-50 text-green-700 py-2 rounded-lg hover:bg-green-100 transition text-sm"><i class="fab fa-whatsapp mr-1"></i>WhatsApp</button>' +
+                    (clientProducts.length > 0 ?
+                        '<button onclick="startAssemblyForClient(' + client.id + ')" class="bg-primary text-white py-2 rounded-lg hover:bg-secondary transition text-sm col-span-2"><i class="fas fa-box mr-1"></i>Montar Caixa</button>' : '') +
+                    '<button onclick="deleteClient(' + client.id + ')" class="bg-red-50 text-red-700 py-2 rounded-lg hover:bg-red-100 transition text-sm ' + (clientProducts.length > 0 ? '' : 'col-span-2') + '"><i class="fas fa-trash mr-1"></i>Excluir</button>' +
+                    '</div>' +
+                    '</div>';
             }).join('');
         }
 
         function filterClients() {
-            const search = document.getElementById('search-client').value.toLowerCase();
-            document.querySelectorAll('#clients-grid > div').forEach(card => {
+            var search = document.getElementById('search-client').value.toLowerCase();
+            document.querySelectorAll('#clients-grid > div').forEach(function (card) {
                 card.style.display = card.textContent.toLowerCase().includes(search) ? '' : 'none';
             });
         }
 
         async function deleteClient(clientId) {
-            const client = await db.get('clients', clientId);
-            if (!confirm(`Excluir cliente "${client.name}"?\n\nTodos os produtos e caixas serão excluídos!`)) return;
+            var client = await db.get('clients', clientId);
+            var confirmed = await showConfirmDialog('Excluir cliente "' + client.name + '"?\n\nTodos os produtos e caixas deste cliente serão excluídos!');
+            if (!confirmed) return;
 
-            const products = await db.getByIndex('products', 'clientId', clientId);
-            const boxes = await db.getByIndex('boxes', 'clientId', clientId);
+            var products = await db.getByIndex('products', 'clientId', clientId);
+            var boxes = await db.getByIndex('boxes', 'clientId', clientId);
 
-            for (const p of products) await db.delete('products', p.id);
-            for (const b of boxes) await db.delete('boxes', b.id);
+            for (var i = 0; i < products.length; i++) await db.delete('products', products[i].id);
+            for (var j = 0; j < boxes.length; j++) await db.delete('boxes', boxes[j].id);
             await db.delete('clients', clientId);
 
             showToast('Cliente excluído!');
             loadClients();
+            loadClientSelects();
             updateStats();
         }
 
         async function loadClientSelects() {
-            const clients = await db.getAll('clients');
-            ['receive-client', 'assembly-client', 'filter-product-client'].forEach(id => {
-                const select = document.getElementById(id);
+            var clients = await db.getAll('clients');
+            ['receive-client', 'assembly-client', 'filter-product-client'].forEach(function (id) {
+                var select = document.getElementById(id);
                 if (!select) return;
-                const first = id === 'filter-product-client' ? '<option value="all">Todos</option>' : '<option value="">Selecione</option>';
-                select.innerHTML = first + clients.map(c => `<option value="${c.id}">${c.name}</option>`).join('');
+                var first = id === 'filter-product-client' ? '<option value="all">Todos</option>' : '<option value="">Selecione</option>';
+                select.innerHTML = first + clients.map(function (c) { return '<option value="' + c.id + '">' + c.name + '</option>'; }).join('');
             });
         }
 
         async function loadPendingClientsList() {
-            const products = await db.getAll('products');
-            const clients = await db.getAll('clients');
+            var products = await db.getAll('products');
+            var clients = await db.getAll('clients');
 
-            const pendingByClient = {};
-            products.filter(p => p.status === 'pending').forEach(p => {
+            var pendingByClient = {};
+            products.filter(function (p) { return p.status === 'pending'; }).forEach(function (p) {
                 if (!pendingByClient[p.clientId]) pendingByClient[p.clientId] = [];
                 pendingByClient[p.clientId].push(p);
             });
 
-            const list = Object.entries(pendingByClient).map(([clientId, prods]) => {
-                const client = clients.find(c => c.id === parseInt(clientId));
-                return client ? { client, products: prods } : null;
+            var list = Object.entries(pendingByClient).map(function (entry) {
+                var clientId = entry[0];
+                var prods = entry[1];
+                var client = clients.find(function (c) { return c.id === parseInt(clientId); });
+                return client ? { client: client, products: prods } : null;
             }).filter(Boolean);
 
             document.getElementById('pending-clients-count').textContent = list.length;
-            const container = document.getElementById('pending-clients-list');
+            var container = document.getElementById('pending-clients-list');
 
             if (list.length === 0) {
                 container.innerHTML = '<p class="text-gray-500 text-center py-8">Nenhum cliente com produtos pendentes</p>';
                 return;
             }
 
-            container.innerHTML = list.map(({ client, products }) => {
-                const totalWeight = products.reduce((sum, p) => sum + parseFloat(p.weight || 0), 0);
-                return `
-                <div class="flex items-center justify-between p-3 bg-gray-50 rounded-xl hover:bg-gray-100 transition">
-                    <div class="flex items-center space-x-3">
-                        <div class="w-10 h-10 bg-yellow-100 rounded-full flex items-center justify-center">
-                            <span class="text-yellow-700 font-bold">${client.name.charAt(0)}</span>
-                        </div>
-                        <div>
-                            <p class="font-medium text-gray-800">${client.name}</p>
-                            <p class="text-sm text-gray-500">${products.length} produtos • ${totalWeight.toFixed(2)}kg</p>
-                        </div>
-                    </div>
-                    <button onclick="startAssemblyForClient(${client.id})" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-secondary transition text-sm">
-                        Montar
-                    </button>
-                </div>
-            `;
+            container.innerHTML = list.map(function (item) {
+                var totalWeight = item.products.reduce(function (sum, p) { return sum + parseFloat(p.weight || 0); }, 0);
+                return '<div class="flex items-center justify-between p-3 bg-gray-50 rounded-xl hover:bg-gray-100 transition">' +
+                    '<div class="flex items-center space-x-3">' +
+                    '<div class="w-10 h-10 bg-yellow-100 rounded-full flex items-center justify-center"><span class="text-yellow-700 font-bold">' + item.client.name.charAt(0) + '</span></div>' +
+                    '<div><p class="font-medium text-gray-800">' + item.client.name + '</p><p class="text-sm text-gray-500">' + item.products.length + ' produtos \u2022 ' + totalWeight.toFixed(2) + 'kg</p></div>' +
+                    '</div>' +
+                    '<button onclick="startAssemblyForClient(' + item.client.id + ')" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-secondary transition text-sm">Montar</button>' +
+                    '</div>';
             }).join('');
         }
 
@@ -1225,11 +1460,12 @@
         document.getElementById('form-receive').addEventListener('submit', async function (e) {
             e.preventDefault();
 
-            const clientId = parseInt(document.getElementById('receive-client').value);
-            const quantity = parseInt(document.getElementById('receive-quantity').value) || 1;
+            var clientId = parseInt(document.getElementById('receive-client').value);
+            var quantity = parseInt(document.getElementById('receive-quantity').value) || 1;
+            var shouldNotify = document.getElementById('receive-notify').checked;
 
-            const productData = {
-                clientId,
+            var productData = {
+                clientId: clientId,
                 description: document.getElementById('receive-description').value.trim(),
                 weight: parseFloat(document.getElementById('receive-weight').value),
                 tracking: document.getElementById('receive-tracking').value.trim(),
@@ -1239,87 +1475,85 @@
                 receivedAt: new Date().toISOString()
             };
 
+            // Get client info BEFORE async operations (to preserve user gesture for WhatsApp)
+            var client = null;
+            if (shouldNotify) {
+                client = await db.get('clients', clientId);
+            }
+
             try {
-                for (let i = 0; i < quantity; i++) {
-                    await db.add('products', { ...productData });
+                for (var i = 0; i < quantity; i++) {
+                    await db.add('products', Object.assign({}, productData));
                 }
 
-                if (document.getElementById('receive-notify').checked) {
-                    const client = await db.get('clients', clientId);
-                    const message = `✅ Olá, ${client.name}!\n\nRecebemos seu produto:\n📦 ${productData.description}\n⚖️ ${productData.weight}kg\n\nAssim que sua caixa estiver pronta, você será notificado!`;
-                    openWhatsApp(client.phone, message);
-                }
-
-                showToast(`${quantity} produto(s) registrado(s)!`);
+                showToast(quantity + ' produto(s) registrado(s)!');
                 document.getElementById('form-receive').reset();
                 loadRecentReceives();
                 loadProducts();
                 updateStats();
                 loadPendingClientsList();
+
+                if (shouldNotify && client) {
+                    var message = '\u2705 Olá, ' + client.name + '!\n\nRecebemos seu produto:\n\uD83D\uDCE6 ' + productData.description + '\n\u2696\uFE0F ' + productData.weight + 'kg\n\nAssim que sua caixa estiver pronta, você será notificado!';
+                    openWhatsApp(client.phone, message, client.country);
+                }
             } catch (error) {
                 showToast('Erro: ' + error.message, 'error');
             }
         });
 
         async function loadRecentReceives() {
-            const products = await db.getAll('products');
-            const clients = await db.getAll('clients');
-            const clientsMap = Object.fromEntries(clients.map(c => [c.id, c]));
+            var products = await db.getAll('products');
+            var clients = await db.getAll('clients');
+            var clientsMap = {};
+            clients.forEach(function (c) { clientsMap[c.id] = c; });
 
-            products.sort((a, b) => new Date(b.receivedAt) - new Date(a.receivedAt));
+            products.sort(function (a, b) { return new Date(b.receivedAt) - new Date(a.receivedAt); });
 
-            const today = new Date().toDateString();
-            document.getElementById('today-received').textContent = products.filter(p => new Date(p.receivedAt).toDateString() === today).length + ' hoje';
+            var today = new Date().toDateString();
+            document.getElementById('today-received').textContent = products.filter(function (p) { return new Date(p.receivedAt).toDateString() === today; }).length + ' hoje';
 
-            const container = document.getElementById('recent-receives');
+            var container = document.getElementById('recent-receives');
 
             if (products.length === 0) {
                 container.innerHTML = '<p class="text-gray-500 text-center py-8">Nenhum produto recebido</p>';
                 return;
             }
 
-            container.innerHTML = products.slice(0, 15).map(product => {
-                const client = clientsMap[product.clientId];
-                return `
-                <div class="flex items-center justify-between p-3 bg-gray-50 rounded-xl">
-                    <div class="flex items-center space-x-3">
-                        <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-                            <i class="fas fa-cube text-blue-600"></i>
-                        </div>
-                        <div>
-                            <p class="font-medium text-gray-800 text-sm">${product.description}</p>
-                            <p class="text-xs text-gray-500">${client?.name || 'N/A'} • ${product.weight}kg</p>
-                        </div>
-                    </div>
-                    <div class="text-right">
-                        <p class="text-xs text-gray-500">${formatDate(product.receivedAt)}</p>
-                        ${getProductStatusBadge(product.status)}
-                    </div>
-                </div>
-            `;
+            container.innerHTML = products.slice(0, 15).map(function (product) {
+                var client = clientsMap[product.clientId];
+                return '<div class="flex items-center justify-between p-3 bg-gray-50 rounded-xl">' +
+                    '<div class="flex items-center space-x-3">' +
+                    '<div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center"><i class="fas fa-cube text-blue-600"></i></div>' +
+                    '<div><p class="font-medium text-gray-800 text-sm">' + product.description + '</p><p class="text-xs text-gray-500">' + (client ? client.name : 'N/A') + ' \u2022 ' + product.weight + 'kg</p></div>' +
+                    '</div>' +
+                    '<div class="text-right"><p class="text-xs text-gray-500">' + formatDate(product.receivedAt) + '</p>' + getProductStatusBadge(product.status) + '</div>' +
+                    '</div>';
             }).join('');
         }
 
         // ==================== PRODUTOS ====================
         async function loadProducts() {
-            const products = await db.getAll('products');
-            const clients = await db.getAll('clients');
-            const boxes = await db.getAll('boxes');
+            var products = await db.getAll('products');
+            var clients = await db.getAll('clients');
+            var boxes = await db.getAll('boxes');
 
-            const clientsMap = Object.fromEntries(clients.map(c => [c.id, c]));
-            const boxesMap = Object.fromEntries(boxes.map(b => [b.id, b]));
+            var clientsMap = {};
+            clients.forEach(function (c) { clientsMap[c.id] = c; });
+            var boxesMap = {};
+            boxes.forEach(function (b) { boxesMap[b.id] = b; });
 
-            const statusFilter = document.getElementById('filter-product-status')?.value || 'all';
-            const clientFilter = document.getElementById('filter-product-client')?.value || 'all';
+            var statusFilter = (document.getElementById('filter-product-status') || {}).value || 'all';
+            var clientFilter = (document.getElementById('filter-product-client') || {}).value || 'all';
 
-            let filtered = products;
-            if (statusFilter !== 'all') filtered = filtered.filter(p => p.status === statusFilter);
-            if (clientFilter !== 'all') filtered = filtered.filter(p => p.clientId === parseInt(clientFilter));
+            var filtered = products;
+            if (statusFilter !== 'all') filtered = filtered.filter(function (p) { return p.status === statusFilter; });
+            if (clientFilter !== 'all') filtered = filtered.filter(function (p) { return p.clientId === parseInt(clientFilter); });
 
-            filtered.sort((a, b) => new Date(b.receivedAt) - new Date(a.receivedAt));
+            filtered.sort(function (a, b) { return new Date(b.receivedAt) - new Date(a.receivedAt); });
 
-            const table = document.getElementById('products-table');
-            const noProducts = document.getElementById('no-products');
+            var table = document.getElementById('products-table');
+            var noProducts = document.getElementById('no-products');
 
             if (filtered.length === 0) {
                 table.innerHTML = '';
@@ -1329,38 +1563,25 @@
 
             noProducts.classList.add('hidden');
 
-            table.innerHTML = filtered.map(product => {
-                const client = clientsMap[product.clientId];
-                const box = product.boxId ? boxesMap[product.boxId] : null;
+            table.innerHTML = filtered.map(function (product) {
+                var client = clientsMap[product.clientId];
+                var box = product.boxId ? boxesMap[product.boxId] : null;
 
-                return `
-                <tr class="hover:bg-gray-50 transition">
-                    <td class="px-4 py-3">
-                        <p class="font-medium text-gray-800">${product.description}</p>
-                        ${product.tracking ? `<p class="text-xs text-gray-500">${product.tracking}</p>` : ''}
-                    </td>
-                    <td class="px-4 py-3 text-sm">${client?.name || 'N/A'}</td>
-                    <td class="px-4 py-3 text-sm font-medium">${product.weight} kg</td>
-                    <td class="px-4 py-3 text-sm text-gray-500">${formatDate(product.receivedAt)}</td>
-                    <td class="px-4 py-3">
-                        ${getProductStatusBadge(product.status)}
-                        ${box ? `<span class="text-xs text-gray-500 ml-1">${box.boxNumber}</span>` : ''}
-                    </td>
-                    <td class="px-4 py-3">
-                        ${product.status === 'pending' ? `
-                            <button onclick="deleteProduct(${product.id})" class="p-2 text-red-600 hover:bg-red-50 rounded-lg transition">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        ` : ''}
-                    </td>
-                </tr>
-            `;
+                return '<tr class="hover:bg-gray-50 transition">' +
+                    '<td class="px-4 py-3"><p class="font-medium text-gray-800">' + product.description + '</p>' + (product.tracking ? '<p class="text-xs text-gray-500">' + product.tracking + '</p>' : '') + '</td>' +
+                    '<td class="px-4 py-3 text-sm">' + (client ? client.name : 'N/A') + '</td>' +
+                    '<td class="px-4 py-3 text-sm font-medium">' + product.weight + ' kg</td>' +
+                    '<td class="px-4 py-3 text-sm text-gray-500">' + formatDate(product.receivedAt) + '</td>' +
+                    '<td class="px-4 py-3">' + getProductStatusBadge(product.status) + (box ? '<span class="text-xs text-gray-500 ml-1">' + box.boxNumber + '</span>' : '') + '</td>' +
+                    '<td class="px-4 py-3">' + (product.status === 'pending' ? '<button onclick="deleteProduct(' + product.id + ')" class="p-2 text-red-600 hover:bg-red-50 rounded-lg transition"><i class="fas fa-trash"></i></button>' : '') + '</td>' +
+                    '</tr>';
             }).join('');
         }
 
         async function deleteProduct(productId) {
-            const product = await db.get('products', productId);
-            if (!confirm(`Excluir "${product.description}"?`)) return;
+            var product = await db.get('products', productId);
+            var confirmed = await showConfirmDialog('Excluir "' + product.description + '"?');
+            if (!confirmed) return;
 
             await db.delete('products', productId);
             showToast('Produto excluído!');
@@ -1370,8 +1591,8 @@
         }
 
         // ==================== MONTAGEM ====================
-        let currentBoxProducts = [];
-        let currentBoxClientId = null;
+        var currentBoxProducts = [];
+        var currentBoxClientId = null;
 
         function resetAssembly() {
             currentBoxProducts = [];
@@ -1385,13 +1606,15 @@
 
         async function startAssemblyForClient(clientId) {
             showTab('assembly');
+            // Wait a tick for the select to be populated
+            await new Promise(function (r) { setTimeout(r, 50); });
             document.getElementById('assembly-client').value = clientId;
             await loadClientProductsForAssembly();
         }
 
         async function loadClientProductsForAssembly() {
-            const clientId = parseInt(document.getElementById('assembly-client').value);
-            const container = document.getElementById('available-products');
+            var clientId = parseInt(document.getElementById('assembly-client').value);
+            var container = document.getElementById('available-products');
 
             if (!clientId) {
                 container.innerHTML = '<p class="text-gray-500 text-center py-8">Selecione um cliente</p>';
@@ -1401,44 +1624,46 @@
                 return;
             }
 
-            currentBoxClientId = clientId;
+            // BUGFIX: Clear box when switching clients
+            if (currentBoxClientId && currentBoxClientId !== clientId) {
+                currentBoxProducts = [];
+            }
 
-            const products = await db.getByIndex('products', 'clientId', clientId);
-            const pendingProducts = products.filter(p => p.status === 'pending' && !currentBoxProducts.find(bp => bp.id === p.id));
+            currentBoxClientId = clientId;
+            updateBoxDisplay();
+
+            var products = await db.getByIndex('products', 'clientId', clientId);
+            var pendingProducts = products.filter(function (p) {
+                return p.status === 'pending' && !currentBoxProducts.find(function (bp) { return bp.id === p.id; });
+            });
 
             if (pendingProducts.length === 0) {
                 container.innerHTML = '<p class="text-green-600 text-center py-8"><i class="fas fa-check-circle mr-2"></i>Todos adicionados ou nenhum disponível</p>';
                 return;
             }
 
-            container.innerHTML = pendingProducts.map(product => `
-            <div class="flex items-center justify-between p-3 bg-gray-50 rounded-xl hover:bg-gray-100 transition cursor-pointer" onclick="addToBox(${product.id})">
-                <div>
-                    <p class="font-medium text-gray-800 text-sm">${product.description}</p>
-                    <p class="text-xs text-gray-500">${formatDate(product.receivedAt)}</p>
-                </div>
-                <div class="flex items-center space-x-3">
-                    <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-lg text-sm font-medium">${product.weight}kg</span>
-                    <i class="fas fa-plus-circle text-primary text-xl"></i>
-                </div>
-            </div>
-        `).join('');
+            container.innerHTML = pendingProducts.map(function (product) {
+                return '<div class="flex items-center justify-between p-3 bg-gray-50 rounded-xl hover:bg-gray-100 transition cursor-pointer" onclick="addToBox(' + product.id + ')">' +
+                    '<div><p class="font-medium text-gray-800 text-sm">' + product.description + '</p><p class="text-xs text-gray-500">' + formatDate(product.receivedAt) + '</p></div>' +
+                    '<div class="flex items-center space-x-3"><span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-lg text-sm font-medium">' + product.weight + 'kg</span><i class="fas fa-plus-circle text-primary text-xl"></i></div>' +
+                    '</div>';
+            }).join('');
         }
 
         async function addToBox(productId) {
-            const settings = db.getSettings();
-            const maxWeight = settings.maxWeight || 25;
+            var settings = getSettings();
+            var maxWeight = settings.maxWeight || 25;
 
-            if (currentBoxProducts.find(p => p.id === productId)) {
+            if (currentBoxProducts.find(function (p) { return p.id === productId; })) {
                 showToast('Já está na caixa!', 'warning');
                 return;
             }
 
-            const product = await db.get('products', productId);
-            const currentWeight = currentBoxProducts.reduce((sum, p) => sum + parseFloat(p.weight), 0);
+            var product = await db.get('products', productId);
+            var currentWeight = currentBoxProducts.reduce(function (sum, p) { return sum + parseFloat(p.weight); }, 0);
 
             if (currentWeight + parseFloat(product.weight) > maxWeight) {
-                showToast(`Excede ${maxWeight}kg!`, 'error');
+                showToast('Excede ' + maxWeight + 'kg!', 'error');
                 return;
             }
 
@@ -1448,49 +1673,44 @@
         }
 
         function removeFromBox(productId) {
-            currentBoxProducts = currentBoxProducts.filter(p => p.id !== productId);
+            currentBoxProducts = currentBoxProducts.filter(function (p) { return p.id !== productId; });
             updateBoxDisplay();
             loadClientProductsForAssembly();
         }
 
         function updateBoxDisplay() {
-            const settings = db.getSettings();
-            const maxWeight = settings.maxWeight || 25;
-            const totalWeight = currentBoxProducts.reduce((sum, p) => sum + parseFloat(p.weight), 0);
-            const percentage = (totalWeight / maxWeight) * 100;
+            var settings = getSettings();
+            var maxWeight = settings.maxWeight || 25;
+            var totalWeight = currentBoxProducts.reduce(function (sum, p) { return sum + parseFloat(p.weight); }, 0);
+            var percentage = (totalWeight / maxWeight) * 100;
 
             document.getElementById('box-weight').textContent = totalWeight.toFixed(2) + ' kg';
             document.getElementById('box-items-count').textContent = currentBoxProducts.length;
             document.getElementById('max-weight-display').textContent = maxWeight + ' kg (máx)';
 
-            const weightBar = document.getElementById('weight-bar');
+            var weightBar = document.getElementById('weight-bar');
             weightBar.style.width = Math.min(percentage, 100) + '%';
             weightBar.className = 'weight-bar h-full rounded-full ' + (percentage > 90 ? 'bg-red-500' : percentage > 70 ? 'bg-yellow-500' : 'bg-gradient-to-r from-primary to-secondary');
 
-            const boxContainer = document.getElementById('box-products');
-            const closeBtn = document.getElementById('btn-close-box');
+            var boxContainer = document.getElementById('box-products');
+            var closeBtn = document.getElementById('btn-close-box');
 
             if (currentBoxProducts.length === 0) {
                 boxContainer.innerHTML = '<p class="text-gray-400 text-sm text-center py-4">Adicione produtos</p>';
                 closeBtn.disabled = true;
             } else {
-                boxContainer.innerHTML = currentBoxProducts.map(product => `
-                <div class="flex items-center justify-between p-2 bg-green-50 rounded-lg">
-                    <div class="flex-1">
-                        <p class="text-sm font-medium text-gray-800 truncate">${product.description}</p>
-                        <p class="text-xs text-gray-500">${product.weight}kg</p>
-                    </div>
-                    <button onclick="removeFromBox(${product.id})" class="text-red-500 hover:text-red-700 p-1">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-            `).join('');
+                boxContainer.innerHTML = currentBoxProducts.map(function (product) {
+                    return '<div class="flex items-center justify-between p-2 bg-green-50 rounded-lg">' +
+                        '<div class="flex-1"><p class="text-sm font-medium text-gray-800 truncate">' + product.description + '</p><p class="text-xs text-gray-500">' + product.weight + 'kg</p></div>' +
+                        '<button onclick="removeFromBox(' + product.id + ')" class="text-red-500 hover:text-red-700 p-1"><i class="fas fa-times"></i></button>' +
+                        '</div>';
+                }).join('');
                 closeBtn.disabled = false;
             }
         }
 
         function selectAllProducts() {
-            document.querySelectorAll('#available-products [onclick^="addToBox"]').forEach(el => el.click());
+            document.querySelectorAll('#available-products [onclick^="addToBox"]').forEach(function (el) { el.click(); });
         }
 
         async function saveBoxAsDraft() {
@@ -1499,21 +1719,21 @@
                 return;
             }
 
-            const boxNumber = 'CX-' + (document.getElementById('box-number').value || '0001');
+            var boxNumber = 'CX-' + (document.getElementById('box-number').value || '0001');
 
             try {
-                const boxId = await db.add('boxes', {
+                var boxId = await db.add('boxes', {
                     clientId: currentBoxClientId,
                     boxNumber: boxNumber,
                     status: 'assembling',
-                    totalWeight: currentBoxProducts.reduce((sum, p) => sum + parseFloat(p.weight), 0),
+                    totalWeight: currentBoxProducts.reduce(function (sum, p) { return sum + parseFloat(p.weight); }, 0),
                     productsCount: currentBoxProducts.length
                 });
 
-                for (const product of currentBoxProducts) {
-                    product.status = 'in_box';
-                    product.boxId = boxId;
-                    await db.update('products', product);
+                for (var i = 0; i < currentBoxProducts.length; i++) {
+                    currentBoxProducts[i].status = 'in_box';
+                    currentBoxProducts[i].boxId = boxId;
+                    await db.update('products', currentBoxProducts[i]);
                 }
 
                 showToast('Rascunho salvo!');
@@ -1531,27 +1751,29 @@
                 return;
             }
 
-            const boxNumber = 'CX-' + (document.getElementById('box-number').value || '0001');
+            var boxNumber = 'CX-' + (document.getElementById('box-number').value || '0001');
+            var totalWeight = currentBoxProducts.reduce(function (sum, p) { return sum + parseFloat(p.weight); }, 0);
+            var itemsCount = currentBoxProducts.length;
 
             try {
-                const boxId = await db.add('boxes', {
+                var boxId = await db.add('boxes', {
                     clientId: currentBoxClientId,
                     boxNumber: boxNumber,
                     status: 'ready',
-                    totalWeight: currentBoxProducts.reduce((sum, p) => sum + parseFloat(p.weight), 0),
-                    productsCount: currentBoxProducts.length,
+                    totalWeight: totalWeight,
+                    productsCount: itemsCount,
                     closedAt: new Date().toISOString()
                 });
 
-                for (const product of currentBoxProducts) {
-                    product.status = 'in_box';
-                    product.boxId = boxId;
-                    await db.update('products', product);
+                for (var i = 0; i < currentBoxProducts.length; i++) {
+                    currentBoxProducts[i].status = 'in_box';
+                    currentBoxProducts[i].boxId = boxId;
+                    await db.update('products', currentBoxProducts[i]);
                 }
 
-                const client = await db.get('clients', currentBoxClientId);
-                const message = `📦 Olá, ${client.name}!\n\nSua caixa *${boxNumber}* está pronta!\n\n📊 Detalhes:\n• ${currentBoxProducts.length} item(s)\n• ${currentBoxProducts.reduce((sum, p) => sum + parseFloat(p.weight), 0).toFixed(2)}kg\n\nAguardando envio!`;
-                openWhatsApp(client.phone, message);
+                var client = await db.get('clients', currentBoxClientId);
+                var message = '\uD83D\uDCE6 Olá, ' + client.name + '!\n\nSua caixa *' + boxNumber + '* está pronta!\n\n\uD83D\uDCCA Detalhes:\n\u2022 ' + itemsCount + ' item(s)\n\u2022 ' + totalWeight.toFixed(2) + 'kg\n\nAguardando envio!';
+                openWhatsApp(client.phone, message, client.country);
 
                 showToast('Caixa fechada!');
                 resetAssembly();
@@ -1564,17 +1786,17 @@
 
         // ==================== CAIXAS ====================
         async function loadBoxes() {
-            const boxes = await db.getAll('boxes');
-            const clients = await db.getAll('clients');
-            const products = await db.getAll('products');
-            const clientsMap = Object.fromEntries(clients.map(c => [c.id, c]));
+            var boxes = await db.getAll('boxes');
+            var clients = await db.getAll('clients');
+            var clientsMap = {};
+            clients.forEach(function (c) { clientsMap[c.id] = c; });
 
-            const statusFilter = document.getElementById('filter-box-status')?.value || 'all';
-            let filtered = statusFilter === 'all' ? boxes : boxes.filter(b => b.status === statusFilter);
-            filtered.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+            var statusFilter = (document.getElementById('filter-box-status') || {}).value || 'all';
+            var filtered = statusFilter === 'all' ? boxes : boxes.filter(function (b) { return b.status === statusFilter; });
+            filtered.sort(function (a, b) { return new Date(b.createdAt) - new Date(a.createdAt); });
 
-            const grid = document.getElementById('boxes-grid');
-            const noBoxes = document.getElementById('no-boxes');
+            var grid = document.getElementById('boxes-grid');
+            var noBoxes = document.getElementById('no-boxes');
 
             if (filtered.length === 0) {
                 grid.innerHTML = '';
@@ -1584,129 +1806,72 @@
 
             noBoxes.classList.add('hidden');
 
-            grid.innerHTML = filtered.map(box => {
-                const client = clientsMap[box.clientId];
-                return `
-                <div class="bg-white rounded-xl p-5 card-hover border border-gray-200 shadow-sm">
-                    <div class="flex items-center justify-between mb-3">
-                        <span class="bg-primary text-white px-3 py-1 rounded-lg text-sm font-bold">${box.boxNumber}</span>
-                        ${getBoxStatusBadge(box.status)}
-                    </div>
-                    <div class="mb-3">
-                        <p class="font-medium text-gray-800">${client?.name || 'N/A'}</p>
-                        <p class="text-sm text-gray-500">${client?.phone || ''}</p>
-                    </div>
-                    <div class="flex items-center space-x-4 mb-4 text-sm text-gray-600">
-                        <span><i class="fas fa-cube mr-1"></i>${box.productsCount || 0}</span>
-                        <span><i class="fas fa-weight mr-1"></i>${(box.totalWeight || 0).toFixed(1)}kg</span>
-                    </div>
-                    <div class="flex space-x-2">
-                        <button onclick="viewBoxDetails(${box.id})" class="flex-1 bg-gray-100 text-gray-700 py-2 rounded-lg hover:bg-gray-200 transition text-sm">
-                            <i class="fas fa-eye mr-1"></i>Ver
-                        </button>
-                        ${box.status === 'ready' ? `
-                            <button onclick="openShipmentModal(${box.id})" class="flex-1 bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition text-sm">
-                                <i class="fas fa-shipping-fast mr-1"></i>Enviar
-                            </button>
-                        ` : ''}
-                        ${box.status === 'shipped' ? `
-                            <button onclick="confirmDelivery(${box.id})" class="flex-1 bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition text-sm">
-                                <i class="fas fa-check-double mr-1"></i>Entregue
-                            </button>
-                        ` : ''}
-                        <button onclick="deleteBox(${box.id})" class="bg-red-100 text-red-600 px-3 py-2 rounded-lg hover:bg-red-200 transition">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                    </div>
-                </div>
-            `;
+            grid.innerHTML = filtered.map(function (box) {
+                var client = clientsMap[box.clientId];
+                return '<div class="bg-white rounded-xl p-5 card-hover border border-gray-200 shadow-sm">' +
+                    '<div class="flex items-center justify-between mb-3"><span class="bg-primary text-white px-3 py-1 rounded-lg text-sm font-bold">' + box.boxNumber + '</span>' + getBoxStatusBadge(box.status) + '</div>' +
+                    '<div class="mb-3"><p class="font-medium text-gray-800">' + (client ? client.name : 'N/A') + '</p><p class="text-sm text-gray-500">' + (client ? client.phone : '') + '</p></div>' +
+                    '<div class="flex items-center space-x-4 mb-4 text-sm text-gray-600"><span><i class="fas fa-cube mr-1"></i>' + (box.productsCount || 0) + '</span><span><i class="fas fa-weight mr-1"></i>' + (box.totalWeight || 0).toFixed(1) + 'kg</span></div>' +
+                    '<div class="flex space-x-2">' +
+                    '<button onclick="viewBoxDetails(' + box.id + ')" class="flex-1 bg-gray-100 text-gray-700 py-2 rounded-lg hover:bg-gray-200 transition text-sm"><i class="fas fa-eye mr-1"></i>Ver</button>' +
+                    (box.status === 'ready' ? '<button onclick="openShipmentModal(' + box.id + ')" class="flex-1 bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition text-sm"><i class="fas fa-shipping-fast mr-1"></i>Enviar</button>' : '') +
+                    (box.status === 'shipped' ? '<button onclick="confirmDelivery(' + box.id + ')" class="flex-1 bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition text-sm"><i class="fas fa-check-double mr-1"></i>Entregue</button>' : '') +
+                    '<button onclick="deleteBox(' + box.id + ')" class="bg-red-100 text-red-600 px-3 py-2 rounded-lg hover:bg-red-200 transition"><i class="fas fa-trash"></i></button>' +
+                    '</div>' +
+                    '</div>';
             }).join('');
         }
 
         async function loadRecentBoxes() {
-            const boxes = await db.getAll('boxes');
-            const clients = await db.getAll('clients');
-            const clientsMap = Object.fromEntries(clients.map(c => [c.id, c]));
+            var boxes = await db.getAll('boxes');
+            var clients = await db.getAll('clients');
+            var clientsMap = {};
+            clients.forEach(function (c) { clientsMap[c.id] = c; });
 
-            boxes.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+            boxes.sort(function (a, b) { return new Date(b.createdAt) - new Date(a.createdAt); });
 
-            const container = document.getElementById('recent-boxes');
+            var container = document.getElementById('recent-boxes');
 
             if (boxes.length === 0) {
                 container.innerHTML = '<p class="text-gray-500 text-center py-8 col-span-3">Nenhuma caixa</p>';
                 return;
             }
 
-            container.innerHTML = boxes.slice(0, 6).map(box => {
-                const client = clientsMap[box.clientId];
-                return `
-                <div class="bg-gray-50 rounded-xl p-4 card-hover cursor-pointer" onclick="viewBoxDetails(${box.id})">
-                    <div class="flex items-center justify-between mb-2">
-                        <span class="bg-primary/10 text-primary px-2 py-1 rounded text-sm font-bold">${box.boxNumber}</span>
-                        ${getBoxStatusBadge(box.status)}
-                    </div>
-                    <p class="font-medium text-gray-800 text-sm">${client?.name || 'N/A'}</p>
-                    <p class="text-xs text-gray-500">${box.productsCount || 0} itens • ${(box.totalWeight || 0).toFixed(1)}kg</p>
-                </div>
-            `;
+            container.innerHTML = boxes.slice(0, 6).map(function (box) {
+                var client = clientsMap[box.clientId];
+                return '<div class="bg-gray-50 rounded-xl p-4 card-hover cursor-pointer" onclick="viewBoxDetails(' + box.id + ')">' +
+                    '<div class="flex items-center justify-between mb-2"><span class="bg-primary/10 text-primary px-2 py-1 rounded text-sm font-bold">' + box.boxNumber + '</span>' + getBoxStatusBadge(box.status) + '</div>' +
+                    '<p class="font-medium text-gray-800 text-sm">' + (client ? client.name : 'N/A') + '</p>' +
+                    '<p class="text-xs text-gray-500">' + (box.productsCount || 0) + ' itens \u2022 ' + (box.totalWeight || 0).toFixed(1) + 'kg</p>' +
+                    '</div>';
             }).join('');
         }
 
         async function viewBoxDetails(boxId) {
-            const box = await db.get('boxes', boxId);
-            const client = await db.get('clients', box.clientId);
-            const products = await db.getByIndex('products', 'boxId', boxId);
+            var box = await db.get('boxes', boxId);
+            var client = await db.get('clients', box.clientId);
+            var products = await db.getByIndex('products', 'boxId', boxId);
 
             document.getElementById('modal-box-title').textContent = box.boxNumber;
-            document.getElementById('modal-box-content').innerHTML = `
-            <div class="space-y-4">
-                <div class="flex items-center justify-between">
-                    ${getBoxStatusBadge(box.status)}
-                    <span class="text-sm text-gray-500">${formatDate(box.createdAt)}</span>
-                </div>
-                <div class="bg-gray-50 rounded-xl p-4">
-                    <h4 class="font-medium mb-2">Cliente</h4>
-                    <p>${client?.name || 'N/A'}</p>
-                    <p class="text-sm text-gray-500">${client?.phone || ''}</p>
-                </div>
-                <div class="grid grid-cols-2 gap-4 text-center">
-                    <div class="bg-blue-50 rounded-xl p-3">
-                        <p class="text-2xl font-bold text-blue-600">${products.length}</p>
-                        <p class="text-xs text-blue-700">Produtos</p>
-                    </div>
-                    <div class="bg-green-50 rounded-xl p-3">
-                        <p class="text-2xl font-bold text-green-600">${(box.totalWeight || 0).toFixed(2)}</p>
-                        <p class="text-xs text-green-700">kg</p>
-                    </div>
-                </div>
-                <div>
-                    <h4 class="font-medium mb-2">Produtos</h4>
-                    <div class="space-y-2 max-h-48 overflow-y-auto">
-                        ${products.map(p => `
-                            <div class="flex justify-between p-2 bg-gray-50 rounded-lg text-sm">
-                                <span>${p.description}</span>
-                                <span class="text-gray-500">${p.weight}kg</span>
-                            </div>
-                        `).join('')}
-                    </div>
-                </div>
-                ${box.tracking ? `
-                    <div class="bg-purple-50 rounded-xl p-4">
-                        <h4 class="font-medium mb-2">Envio</h4>
-                        <p class="text-sm">Transportadora: ${box.carrier || 'N/A'}</p>
-                        <p class="text-sm">Rastreio: ${box.tracking}</p>
-                    </div>
-                ` : ''}
-                <div class="flex space-x-3">
-                    ${box.status === 'ready' ? `
-                        <button onclick="openShipmentModal(${box.id}); closeBoxDetailsModal();" class="flex-1 bg-purple-600 text-white py-3 rounded-xl">Enviar</button>
-                    ` : ''}
-                    <button onclick="sendWhatsApp(${box.clientId})" class="flex-1 bg-primary text-white py-3 rounded-xl">
-                        <i class="fab fa-whatsapp mr-2"></i>WhatsApp
-                    </button>
-                </div>
-            </div>
-        `;
+            document.getElementById('modal-box-content').innerHTML =
+                '<div class="space-y-4">' +
+                '<div class="flex items-center justify-between">' + getBoxStatusBadge(box.status) + '<span class="text-sm text-gray-500">' + formatDate(box.createdAt) + '</span></div>' +
+                '<div class="bg-gray-50 rounded-xl p-4"><h4 class="font-medium mb-2">Cliente</h4><p>' + (client ? client.name : 'N/A') + '</p><p class="text-sm text-gray-500">' + (client ? client.phone : '') + '</p></div>' +
+                '<div class="grid grid-cols-2 gap-4 text-center">' +
+                '<div class="bg-blue-50 rounded-xl p-3"><p class="text-2xl font-bold text-blue-600">' + products.length + '</p><p class="text-xs text-blue-700">Produtos</p></div>' +
+                '<div class="bg-green-50 rounded-xl p-3"><p class="text-2xl font-bold text-green-600">' + (box.totalWeight || 0).toFixed(2) + '</p><p class="text-xs text-green-700">kg</p></div>' +
+                '</div>' +
+                '<div><h4 class="font-medium mb-2">Produtos</h4><div class="space-y-2 max-h-48 overflow-y-auto">' +
+                products.map(function (p) {
+                    return '<div class="flex justify-between p-2 bg-gray-50 rounded-lg text-sm"><span>' + p.description + '</span><span class="text-gray-500">' + p.weight + 'kg</span></div>';
+                }).join('') +
+                '</div></div>' +
+                (box.tracking ? '<div class="bg-purple-50 rounded-xl p-4"><h4 class="font-medium mb-2">Envio</h4><p class="text-sm">Transportadora: ' + (box.carrier || 'N/A') + '</p><p class="text-sm">Rastreio: ' + box.tracking + '</p></div>' : '') +
+                '<div class="flex space-x-3">' +
+                (box.status === 'ready' ? '<button onclick="openShipmentModal(' + box.id + '); closeBoxDetailsModal();" class="flex-1 bg-purple-600 text-white py-3 rounded-xl">Enviar</button>' : '') +
+                '<button onclick="sendWhatsApp(' + box.clientId + ')" class="flex-1 bg-primary text-white py-3 rounded-xl"><i class="fab fa-whatsapp mr-2"></i>WhatsApp</button>' +
+                '</div>' +
+                '</div>';
             document.getElementById('modal-box-details').classList.remove('hidden');
         }
 
@@ -1715,14 +1880,15 @@
         }
 
         async function deleteBox(boxId) {
-            const box = await db.get('boxes', boxId);
-            if (!confirm(`Excluir caixa ${box.boxNumber}?`)) return;
+            var box = await db.get('boxes', boxId);
+            var confirmed = await showConfirmDialog('Excluir caixa ' + box.boxNumber + '?\n\nOs produtos voltarão ao status "Aguardando".');
+            if (!confirmed) return;
 
-            const products = await db.getByIndex('products', 'boxId', boxId);
-            for (const product of products) {
-                product.status = 'pending';
-                product.boxId = null;
-                await db.update('products', product);
+            var products = await db.getByIndex('products', 'boxId', boxId);
+            for (var i = 0; i < products.length; i++) {
+                products[i].status = 'pending';
+                products[i].boxId = null;
+                await db.update('products', products[i]);
             }
 
             await db.delete('boxes', boxId);
@@ -1747,30 +1913,24 @@
         document.getElementById('form-shipment').addEventListener('submit', async function (e) {
             e.preventDefault();
 
-            const boxId = parseInt(document.getElementById('shipment-box-id').value);
-            const tracking = document.getElementById('shipment-tracking').value.trim();
-            const carrier = document.getElementById('shipment-carrier').value;
-            const shouldNotify = document.getElementById('shipment-notify').checked;
+            var boxId = parseInt(document.getElementById('shipment-box-id').value);
+            var tracking = document.getElementById('shipment-tracking').value.trim();
+            var carrier = document.getElementById('shipment-carrier').value;
+            var shouldNotify = document.getElementById('shipment-notify').checked;
 
-            const box = await db.get('boxes', boxId);
-            const client = await db.get('clients', box.clientId);
+            var box = await db.get('boxes', boxId);
+            var client = await db.get('clients', box.clientId);
 
             box.status = 'shipped';
             box.tracking = tracking;
             box.carrier = carrier;
             box.shippedAt = new Date().toISOString();
-
             await db.update('boxes', box);
 
-            const products = await db.getByIndex('products', 'boxId', boxId);
-            for (const product of products) {
-                product.status = 'shipped';
-                await db.update('products', product);
-            }
-
-            if (shouldNotify && client) {
-                const message = `🚚 Olá, ${client.name}!\n\nSua caixa *${box.boxNumber}* foi enviada!\n\n📦 Transportadora: ${carrier}\n📋 Rastreio: ${tracking || 'A informar'}\n\nObrigado!`;
-                openWhatsApp(client.phone, message);
+            var products = await db.getByIndex('products', 'boxId', boxId);
+            for (var i = 0; i < products.length; i++) {
+                products[i].status = 'shipped';
+                await db.update('products', products[i]);
             }
 
             closeShipmentModal();
@@ -1778,38 +1938,47 @@
             loadBoxes();
             loadShipments();
             updateStats();
+
+            if (shouldNotify && client) {
+                var message = '\uD83D\uDE9A Olá, ' + client.name + '!\n\nSua caixa *' + box.boxNumber + '* foi enviada!\n\n\uD83D\uDCE6 Transportadora: ' + carrier + '\n\uD83D\uDCCB Rastreio: ' + (tracking || 'A informar') + '\n\nObrigado!';
+                openWhatsApp(client.phone, message, client.country);
+            }
         });
 
         async function confirmDelivery(boxId) {
-            if (!confirm('Confirmar entrega?')) return;
+            var confirmed = await showConfirmDialog('Confirmar entrega desta caixa?');
+            if (!confirmed) return;
 
-            const box = await db.get('boxes', boxId);
-            const client = await db.get('clients', box.clientId);
+            var box = await db.get('boxes', boxId);
+            var client = await db.get('clients', box.clientId);
 
             box.status = 'delivered';
             box.deliveredAt = new Date().toISOString();
             await db.update('boxes', box);
 
-            const message = `✅ Olá, ${client.name}!\n\nSua caixa *${box.boxNumber}* foi entregue!\n\nObrigado pela preferência! 💚`;
-            openWhatsApp(client.phone, message);
-
             showToast('Entrega confirmada!');
             loadBoxes();
             loadShipments();
             updateStats();
+
+            if (client) {
+                var message = '\u2705 Olá, ' + client.name + '!\n\nSua caixa *' + box.boxNumber + '* foi entregue!\n\nObrigado pela preferência! \uD83D\uDC9A';
+                openWhatsApp(client.phone, message, client.country);
+            }
         }
 
         async function loadShipments() {
-            const boxes = await db.getAll('boxes');
-            const clients = await db.getAll('clients');
-            const clientsMap = Object.fromEntries(clients.map(c => [c.id, c]));
+            var boxes = await db.getAll('boxes');
+            var clients = await db.getAll('clients');
+            var clientsMap = {};
+            clients.forEach(function (c) { clientsMap[c.id] = c; });
 
-            const statusFilter = document.getElementById('filter-shipment-status')?.value || 'ready';
-            let filtered = statusFilter === 'all' ? boxes : boxes.filter(b => b.status === statusFilter);
-            filtered.sort((a, b) => new Date(b.updatedAt || b.createdAt) - new Date(a.updatedAt || a.createdAt));
+            var statusFilter = (document.getElementById('filter-shipment-status') || {}).value || 'ready';
+            var filtered = statusFilter === 'all' ? boxes : boxes.filter(function (b) { return b.status === statusFilter; });
+            filtered.sort(function (a, b) { return new Date(b.updatedAt || b.createdAt) - new Date(a.updatedAt || a.createdAt); });
 
-            const list = document.getElementById('shipments-list');
-            const noShipments = document.getElementById('no-shipments');
+            var list = document.getElementById('shipments-list');
+            var noShipments = document.getElementById('no-shipments');
 
             if (filtered.length === 0) {
                 list.innerHTML = '';
@@ -1819,40 +1988,29 @@
 
             noShipments.classList.add('hidden');
 
-            list.innerHTML = filtered.map(box => {
-                const client = clientsMap[box.clientId];
-                return `
-                <div class="bg-gray-50 rounded-xl p-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
-                    <div class="flex items-center space-x-4">
-                        <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center">
-                            <span class="text-primary font-bold">${(box.boxNumber || '').replace('CX-', '')}</span>
-                        </div>
-                        <div>
-                            <div class="flex items-center space-x-2">
-                                <span class="font-bold">${box.boxNumber}</span>
-                                ${getBoxStatusBadge(box.status)}
-                            </div>
-                            <p class="text-sm text-gray-600">${client?.name || 'N/A'} • ${box.productsCount || 0} itens</p>
-                            ${box.tracking ? `<p class="text-xs text-gray-500">${box.carrier}: ${box.tracking}</p>` : ''}
-                        </div>
-                    </div>
-                    <div class="flex items-center space-x-2">
-                        ${box.status === 'ready' ? `
-                            <button onclick="openShipmentModal(${box.id})" class="bg-purple-600 text-white px-4 py-2 rounded-lg text-sm">Enviar</button>
-                        ` : ''}
-                        ${box.status === 'shipped' ? `
-                            <button onclick="confirmDelivery(${box.id})" class="bg-green-600 text-white px-4 py-2 rounded-lg text-sm">Entregue</button>
-                        ` : ''}
-                        <button onclick="viewBoxDetails(${box.id})" class="bg-gray-200 text-gray-700 px-4 py-2 rounded-lg text-sm">Ver</button>
-                    </div>
-                </div>
-            `;
+            list.innerHTML = filtered.map(function (box) {
+                var client = clientsMap[box.clientId];
+                return '<div class="bg-gray-50 rounded-xl p-5 flex flex-col md:flex-row md:items-center justify-between gap-4">' +
+                    '<div class="flex items-center space-x-4">' +
+                    '<div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center"><span class="text-primary font-bold">' + (box.boxNumber || '').replace('CX-', '') + '</span></div>' +
+                    '<div>' +
+                    '<div class="flex items-center space-x-2"><span class="font-bold">' + box.boxNumber + '</span>' + getBoxStatusBadge(box.status) + '</div>' +
+                    '<p class="text-sm text-gray-600">' + (client ? client.name : 'N/A') + ' \u2022 ' + (box.productsCount || 0) + ' itens</p>' +
+                    (box.tracking ? '<p class="text-xs text-gray-500">' + box.carrier + ': ' + box.tracking + '</p>' : '') +
+                    '</div>' +
+                    '</div>' +
+                    '<div class="flex items-center space-x-2">' +
+                    (box.status === 'ready' ? '<button onclick="openShipmentModal(' + box.id + ')" class="bg-purple-600 text-white px-4 py-2 rounded-lg text-sm">Enviar</button>' : '') +
+                    (box.status === 'shipped' ? '<button onclick="confirmDelivery(' + box.id + ')" class="bg-green-600 text-white px-4 py-2 rounded-lg text-sm">Entregue</button>' : '') +
+                    '<button onclick="viewBoxDetails(' + box.id + ')" class="bg-gray-200 text-gray-700 px-4 py-2 rounded-lg text-sm">Ver</button>' +
+                    '</div>' +
+                    '</div>';
             }).join('');
         }
 
         // ==================== CONFIGURAÇÕES ====================
         function openSettings() {
-            const settings = db.getSettings();
+            var settings = getSettings();
             document.getElementById('setting-company').value = settings.companyName || '';
             document.getElementById('setting-max-weight').value = settings.maxWeight || 25;
             document.getElementById('modal-settings').classList.remove('hidden');
@@ -1862,21 +2020,22 @@
             document.getElementById('modal-settings').classList.add('hidden');
         }
 
-        function saveSettings() {
-            const settings = {
+        async function saveSettings() {
+            var settings = {
                 companyName: document.getElementById('setting-company').value,
                 maxWeight: parseFloat(document.getElementById('setting-max-weight').value) || 25
             };
-            db.saveSettings(settings);
+            await db.saveAppSettings(settings);
             closeSettings();
             showToast('Configurações salvas!');
         }
 
         // ==================== INICIALIZAÇÃO ====================
-        document.addEventListener('DOMContentLoaded', async () => {
+        document.addEventListener('DOMContentLoaded', async function () {
             try {
                 await db.init();
-                console.log('✅ Sistema carregado!');
+                await db.loadAppSettings();
+                console.log('BoxShip carregado!');
 
                 await updateStats();
                 await loadClients();
@@ -1887,15 +2046,14 @@
                 await loadShipments();
                 await loadClientSelects();
                 await loadRecentReceives();
-
             } catch (error) {
-                console.error('Erro:', error);
-                showToast('Erro ao carregar: ' + error.message, 'error');
+                console.log('Erro: ' + (error ? error.message : 'desconhecido'));
+                showToast('Erro ao carregar: ' + (error ? error.message : 'desconhecido'), 'error');
             }
         });
 
         // Fechar modais com ESC
-        document.addEventListener('keydown', (e) => {
+        document.addEventListener('keydown', function (e) {
             if (e.key === 'Escape') {
                 closeClientModal();
                 closeBoxDetailsModal();
